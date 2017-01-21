@@ -50,9 +50,15 @@ public class SlapMe : MonoBehaviour {
     }
 
     //TODO Slapping
-    void SlapMePlease()
+    bool SlapMePlease()
     {
-        MaxSlapCount--;
-        Debug.Log("SLAPPPPP ME");
+        
+        if(MaxSlapCount > 0)
+        {
+            MaxSlapCount--;
+            return true;
+        }
+
+        return false;
     }
 }

@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boundary: 2
+  MaxSlapCount: 0
 --- !u!114 &114000013792892444
 MonoBehaviour:
   m_ObjectHideFlags: 1
