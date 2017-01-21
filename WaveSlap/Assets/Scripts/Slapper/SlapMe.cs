@@ -28,21 +28,22 @@ public class SlapMe : MonoBehaviour {
     void SummonDaRay()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        LayerMask filter = LayerMask.GetMask("Person");
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, filter.value);
         if (hit.collider != null)
         {
             if (CheckInBoundary(hit.collider.gameObject.transform.position))
             {
+                if (hit.collider.gameObject.name == "Waver")
+                {
+                    SlapMePlease(true);
+                }else
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Person"))
                 {
                
-                    SlapMePlease(true);
-                }
-                else 
-                if( hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
-                {
                     SlapMePlease(false);
                 }
+               
             }
 
         }
@@ -64,7 +65,7 @@ public class SlapMe : MonoBehaviour {
         if(MaxSlapCount > 0)
         {
             MaxSlapCount--;
-            Debug.Log("SLAPPPPP MMMEEE");
+           
             if (a)
                 RightSlapPanel.SetActive(true);
             else
