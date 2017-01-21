@@ -500,48 +500,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &998583559
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1152530728
 Prefab:
   m_ObjectHideFlags: 0
@@ -584,6 +542,48 @@ Prefab:
     - target: {fileID: 1000013616571796, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
       propertyPath: m_Name
       value: NPC (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1239049100
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010658795822, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
@@ -682,7 +682,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 1
   numWaves: 3
+  animator: {fileID: 0}
   chooseRandomWaveDelay: {x: 0, y: 0}
+  waveBoxes: []
 --- !u!1001 &1919572536
 Prefab:
   m_ObjectHideFlags: 0
