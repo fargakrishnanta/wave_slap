@@ -93,18 +93,30 @@ public class WaveController : MonoBehaviour {
     }
 
     IEnumerator TimedTriggerSingleWave() {
-        while (gameObject.activeSelf) {
+        while (true) {
             yield return new WaitForSeconds(Random.Range(chooseRandomWaveDelay.x, chooseRandomWaveDelay.y));
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-                animator.SetTrigger("Wave1");
+                animator.SetTrigger("Wave2");
                 Transform target = SingleWave();
-
                 
-
-                if (target) SingleWaveback(target);
+                if (target) {
+                    SingleWaveback(target);
+                    InfluenceHappy(target);
+                }
             }
         }
 
+    }
+
+    void InfluenceHappy(Transform target) {
+        HappyController targetHappyController = target.GetComponent<HappyController>();
+        HappyController selfHappyController = GetComponent<HappyController>();
+
+        if (targetHappyController) {
+            if(targetHappyController.currentHappiness < selfHappyController.currentHappiness) {
+                targetHappyController.IncreaseHappiness();
+            }
+        }
     }
 
     //Returns the transform of one object that is detected when you do a single wave
@@ -112,12 +124,19 @@ public class WaveController : MonoBehaviour {
         LayerMask targetLayer = LayerMask.GetMask("Person");
 
         //Default right
-        float xFacingDir = transform.localScale.x / Mathf.Abs(transform.localScale.x);
+        float xFacingDir = -transform.localScale.x / Mathf.Abs(transform.localScale.x);
 
-        Collider2D coll = Physics2D.OverlapCircle(transform.position + Vector3.right * singleWaveRange * xFacingDir, singeWaveRadius);
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position + Vector3.right * singleWaveRange * xFacingDir, singeWaveRadius);
 
-        if (coll.GetComponent<WaveController>()) {
-            return coll.transform;
+        Debug.DrawRay(transform.position, Vector3.right * singleWaveRange * xFacingDir);
+
+        foreach (Collider2D coll in colls) {
+            if (coll.gameObject != gameObject && coll.GetComponent<WaveController>()) {
+
+                Debug.Log(coll.gameObject.name);
+
+                return coll.transform;
+            }
         }
 
         return null;
@@ -147,7 +166,6 @@ public class WaveController : MonoBehaviour {
                 //its not worth it to count
                 //its prob like 1 second might as well add it to the
                 //cool down timer initially
-
                 waveState = WaveState.CoolDown;
 
                 break;
@@ -170,21 +188,34 @@ public class WaveController : MonoBehaviour {
         Transform waver = transform;
 
         Vector2 wavedToWaver = waver.position - waved.position;
-        float xDir = 0;
-        if (wavedToWaver.x != 0) {
-            xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
-        }
+        
+
+
+        float xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
 
         waved.localScale = new Vector3(-xDir * 0.5f, transform.localScale.y);
 
-        WaveController waveController = GetComponent<WaveController>();
+        waved.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+        
 
-        if (waveController) {
+        WaveController waveController = waved.GetComponent<WaveController>();
+
+        if (waveController && !waveController.animator.GetBool("Wave2")) {
             //Force out of their animation
             waveController.animator.SetTrigger("Idle");
             //Wave 
-            waveController.animator.SetTrigger("Wave1");
+            waveController.animator.SetTrigger("Wave2");
+
+            //Reset Coroutine
+            if (!waveController.isPlayer) {
+                waveController.ResetTimedTriggerSingleWave();
+            }
         }
+    }
+
+    void ResetTimedTriggerSingleWave() {
+        StopAllCoroutines();
+        StartCoroutine(TimedTriggerSingleWave());
     }
 
     void MakeOthershappy(Collider2D[] targets)

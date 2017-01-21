@@ -30,7 +30,7 @@ public class WaverMovement : MonoBehaviour {
     {
         if (dir.x > 0)
             this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        else
+        else if(dir.x < 0)
             this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
     }
 
