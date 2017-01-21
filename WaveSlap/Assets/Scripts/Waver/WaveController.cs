@@ -12,7 +12,14 @@ public class WaveController : MonoBehaviour {
 
     public Vector2 chooseRandomWaveDelay;
 
-    public List<GameObject> waveBoxes;
+    public float areaWaveRadius;
+
+    public int currWave;
+
+	/// <summary>
+    /// Use this state info to reduce amount of calls
+    /// </summary>
+    private AnimatorStateInfo stateInfo;
 
     public WaveState waveState = WaveState.Ready;
 
@@ -39,38 +46,59 @@ public class WaveController : MonoBehaviour {
 
         waveState = WaveState.Ready;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-            DeactivateAllWaveBoxes();
-            if(isPlayer) HandleWaverInput();
+
+    // Update is called once per frame
+    void Update() {
+        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Idle")) {
+            if (isPlayer) {
+                HandleWaverInput();
+                GetComponent<WaverControls>().enabled = true;
+            }
+
+
         }
         else {
-            for(int i = 1; i<numWaves; i++) {
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Wave" + i)) {
-                    ActivateWaveBox(i-1);
+            if (isPlayer) {
+                GetComponent<WaverControls>().enabled = false;
+            }
+            else {
+                GetComponent<NPCMovementControl>().Stop();
+            }
+
+            //Handle animations
+            HandleSingleWave();
+        }
+    }
+
+	void HandleSingleWave() {
+        if (!stateInfo.IsName("SingleWave")) return;
+
+		//TO DO
+    }
+
+	void TriggerAreaWave() {
+        if (!animator.GetBool("Wave2")) {
+            Collider2D[] collided = Physics2D.OverlapCircleAll(transform.position, areaWaveRadius);
+
+            animator.SetTrigger("Idle");
+            animator.SetTrigger("Wave2");
+
+            foreach(Collider2D coll in collided) {
+                WaveController waveController = coll.gameObject.GetComponent<WaveController>();
+                if (waveController) {
+                    waveController.TriggerAreaWave();
                 }
             }
         }
-	}
-
-    void DeactivateAllWaveBoxes() {
-        foreach(GameObject obj in waveBoxes) {
-            obj.SetActive(false);
-        }
-    }
-
-    void ActivateWaveBox(int ndex) {
-        waveBoxes[ndex].SetActive(true);
     }
 
     IEnumerator ChooseRandomWave() {
-
         while (true) {
             yield return new WaitForSeconds(Random.Range(chooseRandomWaveDelay.x, chooseRandomWaveDelay.y));
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-                animator.SetTrigger("Wave" + Random.Range(1, numWaves));
+                currWave = Random.Range(1, numWaves + 1);
+                animator.SetTrigger("Wave" + currWave);
             }
         }
 
@@ -81,18 +109,10 @@ public class WaveController : MonoBehaviour {
         switch (waveState)
         {
             case WaveState.Ready:
-
-                for (int i = 1; i <= numWaves; i++)
+                if (Input.GetButtonDown("Wave2"))
                 {
-
-                    if (Input.GetButtonDown("Wave" + i))
-                    {
-                        Debug.Log("waveInDirection_Type " + i + " hit");
-                        animator.SetTrigger("Wave" + i);
-                        waveState = WaveState.Waving;
-
-                        //Run Waver Controls
-                    }
+                    TriggerAreaWave();
+                    waveState = WaveState.Waving;
                 }
 
                 break;
@@ -122,7 +142,17 @@ public class WaveController : MonoBehaviour {
         
     }
 
-    void ChooseRandom() {
+	//Use for single later
+    void TurnWavedToSelf(CollisionTrigger2D trigger, Collider2D coll) {
+        if (coll.gameObject.layer == LayerMask.NameToLayer("Person")) {
+            Transform waved = coll.transform;
+            Transform waver = transform;
 
+            Vector2 wavedToWaver = waver.position - waved.position;
+
+            float xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
+
+            waved.localScale = new Vector3(-xDir * 0.5f, transform.localScale.y);
+        }
     }
 }

@@ -1,0 +1,116 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class WaveController : MonoBehaviour {
+
+    public bool isPlayer;
+
+    public int numWaves;
+
+    Animator animator;
+
+    public Vector2 chooseRandomWaveDelay;
+
+    public List<GameObject> waveBoxes;
+
+    public GameObject activeGameBox;
+
+    public int currWave;
+
+    // Use this for initialization
+    void Start () {
+        animator = GetComponent<Animator>();
+
+        if (!isPlayer) {
+            StartCoroutine(ChooseRandomWave());
+        }
+
+        foreach(GameObject obj in waveBoxes) {
+            CollisionTrigger2D trigger = obj.GetComponent<CollisionTrigger2D>();
+
+            trigger.onTriggerEnter2D += TurnWavedToSelf;
+        }
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
+            DeactivateAllWaveBoxes();
+            if (isPlayer) {
+                HandleWaverInput();
+                GetComponent<WaverControls>().enabled = true;
+            }
+
+
+        }
+        else {
+            if (isPlayer) {
+                GetComponent<WaverControls>().enabled = false;
+            }
+            else {
+                GetComponent<NPCMovementControl>().Stop();
+            }
+            for (int i = 1; i<=numWaves; i++) {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Wave" + i)) {
+                    ActivateWaveBox(i-1);
+                }
+            }
+        }
+	}
+
+    void DeactivateAllWaveBoxes() {
+        foreach(GameObject obj in waveBoxes) {
+            obj.SetActive(false);
+        }
+    }
+
+    void ActivateWaveBox(int ndex) {
+        waveBoxes[ndex].SetActive(true);
+    }
+
+    void ForceWave(int waveId) {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Wave" + waveId)) {
+            animator.SetTrigger("Idle");
+            DeactivateAllWaveBoxes();
+            animator.SetTrigger("Wave" + waveId);
+        }
+    }
+
+    IEnumerator ChooseRandomWave() {
+
+        while (true) {
+            yield return new WaitForSeconds(Random.Range(chooseRandomWaveDelay.x, chooseRandomWaveDelay.y));
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
+                currWave = Random.Range(1, numWaves + 1);
+                animator.SetTrigger("Wave" + currWave);
+            }
+        }
+
+    }
+
+    void HandleWaverInput() {
+        for(int i=1; i<=numWaves; i++) {
+            if (Input.GetButtonDown("Wave" + i)) {
+                animator.SetTrigger("Wave" + i);
+            }
+        }
+    }
+
+    void TurnWavedToSelf(CollisionTrigger2D trigger, Collider2D coll) {
+        if (coll.gameObject.layer == LayerMask.NameToLayer("Person")) {
+            Transform waved = coll.transform;
+            Transform waver = transform;
+
+            Vector2 wavedToWaver = waver.position - waved.position;
+
+            float xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
+
+            waved.localScale = new Vector3(-xDir * 0.5f, transform.localScale.y);
+
+            if (coll.gameObject.GetComponent<WaveController>()) {
+                coll.gameObject.GetComponent<WaveController>().ForceWave(currWave);
+            }
+        }
+    }
+}

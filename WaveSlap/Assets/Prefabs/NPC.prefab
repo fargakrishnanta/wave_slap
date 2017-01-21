@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000012358608286}
   - 212: {fileID: 212000011496337684}
   - 61: {fileID: 61000012287807096}
+  - 114: {fileID: 114000011990645174}
   m_Layer: 9
   m_Name: WaveBox (1)
   m_TagString: Untagged
@@ -37,7 +38,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014274325162}
   - 212: {fileID: 212000011315160188}
-  - 61: {fileID: 61000012101661880}
+  - 114: {fileID: 114000014252803084}
+  - 58: {fileID: 58000010476306210}
   m_Layer: 9
   m_Name: WaveBox (2)
   m_TagString: Untagged
@@ -55,6 +57,7 @@ GameObject:
   - 4: {fileID: 4000010309332322}
   - 212: {fileID: 212000013263880348}
   - 61: {fileID: 61000014104970488}
+  - 114: {fileID: 114000013741697100}
   m_Layer: 9
   m_Name: WaveBox
   m_TagString: Untagged
@@ -167,7 +170,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010116380526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3, y: 0, z: 0}
+  m_LocalPosition: {x: -2.98, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -193,8 +196,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010644029424}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 0, y: -1.42, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010658795822}
@@ -216,8 +219,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61000012101661880
-BoxCollider2D:
+--- !u!58 &58000010476306210
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -229,7 +232,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Radius: 0.1
 --- !u!61 &61000012287807096
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -281,7 +284,7 @@ Animator:
   m_GameObject: {fileID: 1000013616571796}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 526c67433a51c7d4fa871b0654cc3855, type: 2}
+  m_Controller: {fileID: 22100000, guid: 226c6f239d296a64d9396fa556a69062, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -310,18 +313,31 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013616571796}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5848f708cc931aa4da73e009906922e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
   numWaves: 3
-  chooseRandomWaveDelay: {x: 0.1, y: 1}
+  chooseRandomWaveDelay: {x: 1, y: 5}
   waveBoxes:
   - {fileID: 1000011667061030}
   - {fileID: 1000010116380526}
   - {fileID: 1000010644029424}
+  activeGameBox: {fileID: 0}
+  currWave: 0
+--- !u!114 &114000011990645174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010116380526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f895537f7afee41bd2414af745dd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012501619710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,6 +351,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeDirectionDelayRange: {x: 1, y: 5}
   movementSpeed: 1
+--- !u!114 &114000013741697100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011667061030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f895537f7afee41bd2414af745dd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000014252803084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010644029424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f895537f7afee41bd2414af745dd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212000011315160188
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -362,9 +400,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1944959555
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.2586505, g: 0.6764706, b: 0.45171222, a: 1}
   m_FlipX: 0
   m_FlipY: 0
