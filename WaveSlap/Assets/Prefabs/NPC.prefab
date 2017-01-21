@@ -114,7 +114,7 @@ GameObject:
   - 114: {fileID: 114000011309985460}
   m_Layer: 8
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,8 +152,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013616571796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalPosition: {x: -2.6504846, y: 1.1117679, z: 0}
+  m_LocalScale: {x: -0.5, y: 0.25, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010461046872}
@@ -212,12 +212,12 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &58000010476306210
 CircleCollider2D:
@@ -323,7 +323,7 @@ MonoBehaviour:
   numWaves: 3
   chooseRandomWaveDelay: {x: 1, y: 5}
   areaWaveRadius: 0
-  currWave: 0
+  currWave: 2
   waveState: 0
   coolDownDuration: 0
   coolDownTimer: 0
@@ -351,6 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeDirectionDelayRange: {x: 1, y: 5}
   movementSpeed: 1
+  currentDirection: {x: 0, y: 0}
 --- !u!114 &114000013741697100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -468,7 +469,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 64ab417796dbd1749a7344294c53ec7e, type: 3}
+  m_Sprite: {fileID: 21300004, guid: c58d460155938b046adf55e50814566d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
