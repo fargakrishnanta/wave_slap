@@ -12,14 +12,11 @@ public class WaveController : MonoBehaviour {
 
     public Vector2 chooseRandomWaveDelay;
 
-    public float areaWaveRadius;
+    public List<GameObject> waveBoxes;
+
+    public GameObject activeGameBox;
 
     public int currWave;
-
-	/// <summary>
-    /// Use this state info to reduce amount of calls
-    /// </summary>
-    private AnimatorStateInfo stateInfo;
 
     // Use this for initialization
     void Start () {
@@ -28,12 +25,18 @@ public class WaveController : MonoBehaviour {
         if (!isPlayer) {
             StartCoroutine(ChooseRandomWave());
         }
-	}
 
-    // Update is called once per frame
-    void Update() {
-        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsName("Idle")) {
+        foreach(GameObject obj in waveBoxes) {
+            CollisionTrigger2D trigger = obj.GetComponent<CollisionTrigger2D>();
+
+            trigger.onTriggerEnter2D += TurnWavedToSelf;
+        }
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
+            DeactivateAllWaveBoxes();
             if (isPlayer) {
                 HandleWaverInput();
                 GetComponent<WaverControls>().enabled = true;
@@ -48,35 +51,34 @@ public class WaveController : MonoBehaviour {
             else {
                 GetComponent<NPCMovementControl>().Stop();
             }
+            for (int i = 1; i<=numWaves; i++) {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Wave" + i)) {
+                    ActivateWaveBox(i-1);
+                }
+            }
+        }
+	}
 
-            //Handle animations
-            HandleSingleWave();
+    void DeactivateAllWaveBoxes() {
+        foreach(GameObject obj in waveBoxes) {
+            obj.SetActive(false);
         }
     }
 
-	void HandleSingleWave() {
-        if (!stateInfo.IsName("SingleWave")) return;
-
-		//TO DO
+    void ActivateWaveBox(int ndex) {
+        waveBoxes[ndex].SetActive(true);
     }
 
-	void TriggerAreaWave() {
-        if (!animator.GetBool("Wave2")) {
-            Collider2D[] collided = Physics2D.OverlapCircleAll(transform.position, areaWaveRadius);
-
+    void ForceWave(int waveId) {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Wave" + waveId)) {
             animator.SetTrigger("Idle");
-            animator.SetTrigger("Wave2");
-
-            foreach(Collider2D coll in collided) {
-                WaveController waveController = coll.gameObject.GetComponent<WaveController>();
-                if (waveController) {
-                    waveController.TriggerAreaWave();
-                }
-            }
+            DeactivateAllWaveBoxes();
+            animator.SetTrigger("Wave" + waveId);
         }
     }
 
     IEnumerator ChooseRandomWave() {
+
         while (true) {
             yield return new WaitForSeconds(Random.Range(chooseRandomWaveDelay.x, chooseRandomWaveDelay.y));
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
@@ -88,12 +90,13 @@ public class WaveController : MonoBehaviour {
     }
 
     void HandleWaverInput() {
-        if (Input.GetButtonDown("Wave2")) {
-            TriggerAreaWave();
+        for(int i=1; i<=numWaves; i++) {
+            if (Input.GetButtonDown("Wave" + i)) {
+                animator.SetTrigger("Wave" + i);
+            }
         }
     }
 
-	//Use for single later
     void TurnWavedToSelf(CollisionTrigger2D trigger, Collider2D coll) {
         if (coll.gameObject.layer == LayerMask.NameToLayer("Person")) {
             Transform waved = coll.transform;
@@ -104,6 +107,10 @@ public class WaveController : MonoBehaviour {
             float xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
 
             waved.localScale = new Vector3(-xDir * 0.5f, transform.localScale.y);
+
+            if (coll.gameObject.GetComponent<WaveController>()) {
+                coll.gameObject.GetComponent<WaveController>().ForceWave(currWave);
+            }
         }
     }
 }

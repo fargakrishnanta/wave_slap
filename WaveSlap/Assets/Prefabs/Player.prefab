@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000012980747454}
   - 212: {fileID: 212000012593894394}
   - 61: {fileID: 61000011552254144}
+  - 114: {fileID: 114000010185431720}
   m_Layer: 9
   m_Name: WaveBox (4)
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - 4: {fileID: 4000012169394946}
   - 212: {fileID: 212000011466202790}
   - 61: {fileID: 61000010390525706}
+  - 114: {fileID: 114000013527796728}
   m_Layer: 9
   m_Name: WaveBox (3)
   m_TagString: Untagged
@@ -55,6 +57,7 @@ GameObject:
   - 4: {fileID: 4000011321117420}
   - 212: {fileID: 212000011134726640}
   - 61: {fileID: 61000010344232084}
+  - 114: {fileID: 114000013168965648}
   m_Layer: 9
   m_Name: WaveBox (5)
   m_TagString: Untagged
@@ -194,6 +197,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010185431720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010794340408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f895537f7afee41bd2414af745dd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012315867318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,6 +226,29 @@ MonoBehaviour:
   - {fileID: 1000011286839068}
   - {fileID: 1000010794340408}
   - {fileID: 1000012049550308}
+  activeGameBox: {fileID: 0}
+--- !u!114 &114000013168965648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012049550308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f895537f7afee41bd2414af745dd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013527796728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011286839068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f895537f7afee41bd2414af745dd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212000011134726640
 SpriteRenderer:
   m_ObjectHideFlags: 1
