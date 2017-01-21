@@ -35,6 +35,6 @@ public class HappyController : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D coll) {
-        IncreaseHappiness();
+        if(coll.GetComponent<HappyController>()) coll.GetComponent<HappyController>().IncreaseHappiness();
     }
 }

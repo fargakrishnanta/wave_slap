@@ -21,13 +21,13 @@ GameObject:
   - 4: {fileID: 4000012358608286}
   - 212: {fileID: 212000011496337684}
   - 61: {fileID: 61000012287807096}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WaveBox (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010644029424
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,13 +38,13 @@ GameObject:
   - 4: {fileID: 4000014274325162}
   - 212: {fileID: 212000011315160188}
   - 61: {fileID: 61000012101661880}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WaveBox (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011667061030
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,13 +55,13 @@ GameObject:
   - 4: {fileID: 4000010309332322}
   - 212: {fileID: 212000013263880348}
   - 61: {fileID: 61000014104970488}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WaveBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012502368604
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013616571796}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5848f708cc931aa4da73e009906922e6, type: 3}
   m_Name: 

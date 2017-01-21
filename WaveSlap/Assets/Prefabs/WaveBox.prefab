@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013198058882}
   - 212: {fileID: 212000011327830332}
   - 61: {fileID: 61000013276204932}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WaveBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
