@@ -58,9 +58,10 @@ public class WaveController : MonoBehaviour {
             if (isPlayer) {
                 HandleWaverInput();
                 GetComponent<WaverMovement>().enabled = true;
+            }else
+            {
+                GetComponent<NPCMovementControl>().Resume();
             }
-
-
         }
         else {
             if (isPlayer) {
