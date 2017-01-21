@@ -5,6 +5,9 @@ public class SlapMe : MonoBehaviour {
 
     [SerializeField]
     public float Boundary;
+
+    [SerializeField]
+    public int MaxSlapCount;
 	// Use this for initialization
 	void Start () {
 	
@@ -49,6 +52,7 @@ public class SlapMe : MonoBehaviour {
     //TODO Slapping
     void SlapMePlease()
     {
+        MaxSlapCount--;
         Debug.Log("SLAPPPPP ME");
     }
 }
