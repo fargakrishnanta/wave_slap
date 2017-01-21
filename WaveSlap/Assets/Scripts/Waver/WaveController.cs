@@ -168,8 +168,10 @@ public class WaveController : MonoBehaviour {
         Transform waver = transform;
 
         Vector2 wavedToWaver = waver.position - waved.position;
-
-        float xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
+        float xDir = 0;
+        if (wavedToWaver.x != 0) {
+            xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
+        }
 
         waved.localScale = new Vector3(-xDir * 0.5f, transform.localScale.y);
 
