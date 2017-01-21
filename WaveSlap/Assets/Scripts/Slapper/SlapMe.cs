@@ -8,6 +8,9 @@ public class SlapMe : MonoBehaviour {
 
     [SerializeField]
     public int MaxSlapCount;
+
+    public GameObject RightSlapPanel;
+    public GameObject WrongSlapPanel;
 	// Use this for initialization
 	void Start () {
 	
@@ -25,15 +28,22 @@ public class SlapMe : MonoBehaviour {
     void SummonDaRay()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        LayerMask filter = LayerMask.GetMask("Person");
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, filter.value);
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Person"))
+            if (CheckInBoundary(hit.collider.gameObject.transform.position))
             {
-                if (CheckInBoundary(hit.collider.gameObject.transform.position))
+                if (hit.collider.gameObject.name == "Waver")
                 {
-                    SlapMePlease();
+                    SlapMePlease(true);
+                }else
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Person"))
+                {
+               
+                    SlapMePlease(false);
                 }
+               
             }
 
         }
@@ -49,16 +59,18 @@ public class SlapMe : MonoBehaviour {
     }
 
     //TODO Slapping
-    bool SlapMePlease()
+    void SlapMePlease(bool a)
     {
         
         if(MaxSlapCount > 0)
         {
             MaxSlapCount--;
-            Debug.Log("SLAPPPPP MMMEEE");
-            return true;
-        }
+           
+            if (a)
+                RightSlapPanel.SetActive(true);
+            else
+                WrongSlapPanel.SetActive(true);
 
-        return false;
+        }
     }
 }
