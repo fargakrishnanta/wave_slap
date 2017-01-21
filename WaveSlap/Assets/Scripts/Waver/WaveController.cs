@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WaveController : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class WaveController : MonoBehaviour {
     Animator animator;
 
     public Vector2 chooseRandomWaveDelay;
+
+    public List<GameObject> waveBoxes;
 
     // Use this for initialization
     void Start () {
@@ -22,25 +25,41 @@ public class WaveController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isPlayer && animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-            HandleWaveInput();
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
+            DeactivateAllWaveBoxes();
+            if(isPlayer) HandleWaverInput();
+        }
+        else {
+            for(int i = 1; i<numWaves; i++) {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Wave" + i)) {
+                    ActivateWaveBox(i-1);
+                }
+            }
         }
 	}
+
+    void DeactivateAllWaveBoxes() {
+        foreach(GameObject obj in waveBoxes) {
+            obj.SetActive(false);
+        }
+    }
+
+    void ActivateWaveBox(int ndex) {
+        waveBoxes[ndex].SetActive(true);
+    }
 
     IEnumerator ChooseRandomWave() {
 
         while (true) {
             yield return new WaitForSeconds(Random.Range(chooseRandomWaveDelay.x, chooseRandomWaveDelay.y));
-            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-                Debug.Log("BB");
                 animator.SetTrigger("Wave" + Random.Range(1, numWaves));
             }
         }
 
     }
 
-    void HandleWaveInput() {
+    void HandleWaverInput() {
         for(int i=1; i<=numWaves; i++) {
             if (Input.GetButtonDown("Wave" + i)) {
                 animator.SetTrigger("Wave" + i);
