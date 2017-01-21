@@ -15,6 +15,7 @@ public class NPCMovementControl : MonoBehaviour {
     public float movementSpeed;
 
     Vector2 currentDirection;
+
     
 
     // Use this for initialization
@@ -32,6 +33,7 @@ public class NPCMovementControl : MonoBehaviour {
         availableDirections.Add(new Vector2(-1, 1));
         availableDirections.Add(new Vector2(1, -1));
         availableDirections.Add(new Vector2(-1, -1));
+        availableDirections.Add(Vector2.zero);
 
         StartCoroutine(ChangeDirection());
     }
@@ -52,6 +54,9 @@ public class NPCMovementControl : MonoBehaviour {
         }
     }
 
+    public void Stop() {
+        currentDirection = Vector2.zero;
+    }
     /*   
        Transform wanderTarget;
        Rigidbody2D rb;
