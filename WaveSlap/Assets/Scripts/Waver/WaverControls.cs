@@ -125,7 +125,7 @@ public class WaverControls : MonoBehaviour {
     {
         if (printMovementDebug)
         {
-            Debug.Log("movePlayer[x][y]: [" + v.x + "][" + v.y + "]");
+           // Debug.Log("movePlayer[x][y]: [" + v.x + "][" + v.y + "]");
         }
 
         //Obtain rigidBody2D component

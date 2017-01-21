@@ -25,13 +25,12 @@ public class SlapMe : MonoBehaviour {
     void SummonDaRay()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.Log(ray.origin.ToString());
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Person"))
             {
-                if (CheckInBoundary(hit.collider.gameObject))
+                if (CheckInBoundary(hit.collider.gameObject.transform.position))
                 {
                     SlapMePlease();
                 }
@@ -41,9 +40,9 @@ public class SlapMe : MonoBehaviour {
     }
 
     /*Check if you are within the range to slap*/
-    bool CheckInBoundary(GameObject go)
+    bool CheckInBoundary(Vector3 go)
     {
-        if ((this.transform.position - go.transform.position).magnitude <= Boundary)
+        if ((this.transform.position - go).magnitude <= Boundary)
             return true;
 
         return false;
@@ -56,6 +55,7 @@ public class SlapMe : MonoBehaviour {
         if(MaxSlapCount > 0)
         {
             MaxSlapCount--;
+            Debug.Log("SLAPPPPP MMMEEE");
             return true;
         }
 
