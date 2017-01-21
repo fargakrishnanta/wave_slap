@@ -21,6 +21,18 @@ public class WaveController : MonoBehaviour {
     /// </summary>
     private AnimatorStateInfo stateInfo;
 
+    public WaveState waveState = WaveState.Ready;
+
+    //Wave cool down and state variables
+    public enum WaveState
+    {
+        Ready,
+        Waving,
+        CoolDown
+    }
+    public float coolDownDuration;
+    public float coolDownTimer;
+
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
@@ -28,6 +40,11 @@ public class WaveController : MonoBehaviour {
         if (!isPlayer) {
             StartCoroutine(ChooseRandomWave());
         }
+
+        //Initialize the coolDownTimer to be the coolDownDuration
+        coolDownTimer = coolDownDuration;
+
+        waveState = WaveState.Ready;
 	}
 
     // Update is called once per frame
@@ -88,9 +105,41 @@ public class WaveController : MonoBehaviour {
     }
 
     void HandleWaverInput() {
-        if (Input.GetButtonDown("Wave2")) {
-            TriggerAreaWave();
+
+        switch (waveState)
+        {
+            case WaveState.Ready:
+                if (Input.GetButtonDown("Wave2"))
+                {
+                    TriggerAreaWave();
+                    waveState = WaveState.Waving;
+                }
+
+                break;
+            case WaveState.Waving:
+
+                //removed the timer for waiting for the waving animation
+                //to finish because i think that time is so small
+                //its not worth it to count
+                //its prob like 1 second might as well add it to the
+                //cool down timer initially
+
+                waveState = WaveState.CoolDown;
+
+                break;
+            //Bro, stop
+            case WaveState.CoolDown:
+                //coolDownTimer -= Time.fixedDeltaTime;
+                coolDownTimer -= Time.fixedDeltaTime;
+
+                if (coolDownTimer <= 0)
+                {
+                    coolDownTimer = coolDownDuration;
+                    waveState = WaveState.Ready;
+                }
+                break;
         }
+        
     }
 
 	//Use for single later

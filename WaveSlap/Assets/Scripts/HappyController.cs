@@ -5,9 +5,10 @@ public class HappyController : MonoBehaviour {
 
     public bool isPlayer;
 
-    public int stepsToHappiness;
+    public int maxHappiness;//Max Happiness
+    public int minHappiness = 0;//Min Happiness, assuming the NPC is not enrolled at BCIT
 
-    public int currentStepToHappiness;
+    public int currentHappiness;//current Happiness
 
     public SpriteRenderer happyCounter;
 
@@ -23,15 +24,21 @@ public class HappyController : MonoBehaviour {
 
     void HandleNPCHappiness() {
         //temp trigger
-        if (Input.GetKeyDown(KeyCode.A)){
+        if (Input.GetKeyDown(KeyCode.H)){
             IncreaseHappiness();
         }
     }
 
     void IncreaseHappiness() {
-        if (currentStepToHappiness < stepsToHappiness) currentStepToHappiness++;
+        if (currentHappiness < maxHappiness) currentHappiness++;
 
-        if (happyCounter) happyCounter.color = new Color((float)currentStepToHappiness / stepsToHappiness, (float)currentStepToHappiness / stepsToHappiness, 0);
+        if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);
+    }
+    void DecreaseHappiness()
+    {
+        if (currentHappiness < minHappiness) currentHappiness--;
+
+        if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);
     }
 
     void OnTriggerEnter2D(Collider2D coll) {
