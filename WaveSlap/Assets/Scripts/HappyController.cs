@@ -28,7 +28,7 @@ public class HappyController : MonoBehaviour {
         }
     }
 
-    void IncreaseHappiness() {
+    public void IncreaseHappiness() {
         if (currentStepToHappiness < stepsToHappiness) currentStepToHappiness++;
 
         if (happyCounter) happyCounter.color = new Color((float)currentStepToHappiness / stepsToHappiness, (float)currentStepToHappiness / stepsToHappiness, 0);
