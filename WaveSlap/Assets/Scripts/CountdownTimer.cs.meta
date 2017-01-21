@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 907cf08bc57ae4f4395c7aa33e83e2d5
+timeCreated: 1485001518
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - S1: {fileID: 21300000, guid: e7ebf657bdb70894baaa7147eee5b1bd, type: 3}
+  - S2: {fileID: 21300000, guid: 2478304940fad8d45993c24e13d31dbb, type: 3}
+  - S3: {fileID: 21300000, guid: 022a641f58cf0334287a98e59cafab0b, type: 3}
+  - S4: {fileID: 21300000, guid: d5c6d629af19e4d48b8a9a159488c22a, type: 3}
+  - S5: {fileID: 21300000, guid: 340219eb7d844e1468111b43461615b8, type: 3}
+  - S6: {fileID: 21300000, guid: 6cce25f8dbda2e7419d4a78fde14905b, type: 3}
+  - S7: {fileID: 21300000, guid: baf99725018e12f48ba4780ec358d913, type: 3}
+  - S8: {fileID: 21300000, guid: 2e5f9e77d695368408903735fe0b7d96, type: 3}
+  - S9: {fileID: 21300000, guid: 2e5f9e77d695368408903735fe0b7d96, type: 3}
+  - S0: {fileID: 21300000, guid: e6696f423e210d043a6a97be0dfb5a44, type: 3}
+  - MOne: {instanceID: 0}
+  - MTwo: {instanceID: 0}
+  - SOne: {instanceID: 0}
+  - STwo: {instanceID: 0}
+  - Timer: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
