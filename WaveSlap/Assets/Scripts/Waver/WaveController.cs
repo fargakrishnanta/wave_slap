@@ -95,7 +95,11 @@ public class WaveController : MonoBehaviour {
             yield return new WaitForSeconds(Random.Range(chooseRandomWaveDelay.x, chooseRandomWaveDelay.y));
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
                 animator.SetTrigger("Wave1");
-                SingleWave();
+                Transform target = SingleWave();
+
+                
+
+                if (target) SingleWaveback(target);
             }
         }
 
@@ -108,7 +112,13 @@ public class WaveController : MonoBehaviour {
         //Default right
         float xFacingDir = transform.localScale.x / Mathf.Abs(transform.localScale.x);
 
-        Collider2D coll = Physics2D.OverlapCircle(transform.position + )
+        Collider2D coll = Physics2D.OverlapCircle(transform.position + Vector3.right * singleWaveRange * xFacingDir, singeWaveRadius);
+
+        if (coll.GetComponent<WaveController>()) {
+            return coll.transform;
+        }
+
+        return null;
     }
 
     void HandleWaverInput() {
