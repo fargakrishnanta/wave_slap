@@ -53,14 +53,14 @@ public class WaveController : MonoBehaviour {
         if (stateInfo.IsName("Idle")) {
             if (isPlayer) {
                 HandleWaverInput();
-                GetComponent<WaverControls>().enabled = true;
+                GetComponent<WaverMovement>().enabled = true;
             }
 
 
         }
         else {
             if (isPlayer) {
-                GetComponent<WaverControls>().enabled = false;
+                GetComponent<WaverMovement>().enabled = false;
             }
             else {
                 GetComponent<NPCMovementControl>().Stop();
