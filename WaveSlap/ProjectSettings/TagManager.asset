@@ -15,7 +15,7 @@ TagManager:
   - 
   - Person
   - WaveBox
-  - 
+  - Slapper
   - 
   - 
   - 
@@ -43,4 +43,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: CutSceneBg
+    uniqueID: 2411087043
+    locked: 0
+  - name: CutSceneObj
+    uniqueID: 450924017
     locked: 0

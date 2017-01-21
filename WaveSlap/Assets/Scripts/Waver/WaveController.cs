@@ -81,6 +81,8 @@ public class WaveController : MonoBehaviour {
             //set them to do the area wave
             animator.SetTrigger("Wave2");
 
+            if (isPlayer) MakeOthershappy(collided);
+
             foreach(Collider2D coll in collided) {
                 WaveController waveController = coll.gameObject.GetComponent<WaveController>();
                 if (waveController) {
@@ -182,6 +184,18 @@ public class WaveController : MonoBehaviour {
             waveController.animator.SetTrigger("Idle");
             //Wave 
             waveController.animator.SetTrigger("Wave1");
+        }
+    }
+
+    void MakeOthershappy(Collider2D[] targets)
+    {
+        foreach(Collider2D target in targets)
+        {
+            HappyController happyController = target.GetComponent<HappyController>();
+            if (happyController)
+            {
+                happyController.IncreaseHappiness();
+            }
         }
     }
 }

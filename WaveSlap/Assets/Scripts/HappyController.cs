@@ -29,7 +29,7 @@ public class HappyController : MonoBehaviour {
         }
     }
 
-    void IncreaseHappiness() {
+    public void IncreaseHappiness() {
         if (currentHappiness < maxHappiness) currentHappiness++;
 
         if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);

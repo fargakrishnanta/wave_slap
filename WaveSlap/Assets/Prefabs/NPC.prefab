@@ -304,8 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  stepsToHappiness: 5
-  currentStepToHappiness: 0
+  maxHappiness: 2
+  minHappiness: 0
+  currentHappiness: 0
   happyCounter: {fileID: 212000013510170372}
 --- !u!114 &114000011423882976
 MonoBehaviour:
@@ -321,12 +322,11 @@ MonoBehaviour:
   isPlayer: 0
   numWaves: 3
   chooseRandomWaveDelay: {x: 1, y: 5}
-  waveBoxes:
-  - {fileID: 1000011667061030}
-  - {fileID: 1000010116380526}
-  - {fileID: 1000010644029424}
-  activeGameBox: {fileID: 0}
+  areaWaveRadius: 0
   currWave: 0
+  waveState: 0
+  coolDownDuration: 0
+  coolDownTimer: 0
 --- !u!114 &114000011990645174
 MonoBehaviour:
   m_ObjectHideFlags: 1
