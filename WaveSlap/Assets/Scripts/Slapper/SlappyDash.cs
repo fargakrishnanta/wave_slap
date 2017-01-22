@@ -18,6 +18,9 @@ public class SlappyDash : MonoBehaviour {
 
     private float m_cdTimer;
 
+    [SerializeField]
+    private GameObject m_DashVisualFeedback;
+
 	// Use this for initialization
 	void Start () {
         m_rb = this.gameObject.GetComponent<Rigidbody2D>();
@@ -35,6 +38,13 @@ public class SlappyDash : MonoBehaviour {
                 {
                     //LetsDash();
                     dashState = DashState.Dashing;
+                    GameObject dash = (GameObject)Instantiate(m_DashVisualFeedback, transform.position, Quaternion.identity);
+                    
+
+                    
+                    dash.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
+
+                    DestroyObject(dash,0.5f);
 
                     //spawnParticles
                 }

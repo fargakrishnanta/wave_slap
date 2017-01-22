@@ -197,7 +197,7 @@ public class WaveController : MonoBehaviour {
                         SingleWaveback(target);
                         HappyController happyController = target.GetComponent<HappyController>();
                         if (happyController) {
-                            happyController.IncreaseHappiness(2);
+                            happyController.IncreaseHappiness();
                         }
                     }
                 }
