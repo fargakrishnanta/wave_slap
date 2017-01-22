@@ -144,9 +144,16 @@ public class GlobalHappyController : MonoBehaviour {
             case 1:
                 //apply a gradual darkening to a selected color
                 //based on the position of the game object in the list of game objects
+                //3 different colors
                 applyColorScale_Type2();
                 break;
             case 2:
+                //apply a gradual darkening to a selected color
+                //based on the position of the game object in the list of game objects
+                //6 different colors
+                applyColorScale_Type3();
+                break;
+            case 3:
                 //apply random color scale of one color RGB
                 //as well as an increase in darkness to that color
                 //randomly changes each sprite's color every time
@@ -173,6 +180,38 @@ public class GlobalHappyController : MonoBehaviour {
                 case 2:
                     spriteRenderer.color = new Color((1f - colorLense.r), (1f - colorLense.g), 1f);
                     break;
+            }
+        }
+    }
+    public void applyColorScale_Type3()
+    {
+        int mod6 = 0;
+        foreach (GameObject curGameObject in NPCList)
+        {
+            spriteRenderer = curGameObject.GetComponent<SpriteRenderer>();
+            mod6 = (NPCList.IndexOf(curGameObject)) % 6;
+
+            switch (mod6)
+            {
+                case 0:
+                    spriteRenderer.color = new Color(1f, (1f - colorLense.g), (1f - colorLense.b));
+                    break;
+                case 1:
+                    spriteRenderer.color = new Color((1f - colorLense.r), 1f, (1f - colorLense.b));
+                    break;
+                case 2:
+                    spriteRenderer.color = new Color((1f - colorLense.r), (1f - colorLense.g), 1f);
+                    break;
+                case 3:
+                    spriteRenderer.color = new Color(1f, 1f, (1f - colorLense.b));
+                    break;
+                case 4:
+                    spriteRenderer.color = new Color(1f, (1f - colorLense.g), 1f);
+                    break;
+                case 5:
+                    spriteRenderer.color = new Color((1f - colorLense.r), 1f, 1f);
+                    break;
+
             }
         }
     }
