@@ -12,9 +12,13 @@ public class HappyController : MonoBehaviour {
 
     public SpriteRenderer happyCounter;
 
-	// Use this for initialization
-	void Start () {
-	    
+    //Event Manager
+    public EventManager em;//MUST BE SET IN INSPECTOR
+
+
+    // Use this for initialization
+    void Start () {
+
 	}
 	
 	// Update is called once per frame
@@ -27,18 +31,34 @@ public class HappyController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.H)){
             IncreaseHappiness();
         }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            DecreaseHappiness();
+        }
     }
 
     public void IncreaseHappiness() {
         if (currentHappiness < maxHappiness) currentHappiness++;
 
         if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);
+
+        //Call the EM_HappinessIncreased function in the Event Manager
+        //This in turn lets the GlobalHappinessController know 
+        //that someone's happiness has increased, prompting it to
+        //recalculate the total happiness
+        em.EM_HappinessIncreased();
     }
     void DecreaseHappiness()
     {
-        if (currentHappiness < minHappiness) currentHappiness--;
+        if (currentHappiness > minHappiness) currentHappiness--;
 
         if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);
+
+        //Call the EM_HappinessDecreased function in the Event Manager
+        //This in turn lets the GlobalHappinessController know 
+        //that someone's happiness has decreased, prompting it to
+        //recalculate the total happiness
+        em.EM_HappinessDecreased();
     }
 
     void OnTriggerEnter2D(Collider2D coll) {

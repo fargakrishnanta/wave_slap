@@ -12,7 +12,6 @@ public class WaveController : MonoBehaviour {
 
     public Vector2 chooseRandomWaveDelay;
 
-    public float areaWaveRadius;
 
     public int currWave;
 
@@ -33,12 +32,17 @@ public class WaveController : MonoBehaviour {
     public float coolDownDuration;
     public float coolDownTimer;
 
+    
+    public float areaWaveRadius;
+    public float singleWaveRange;
+    public float singeWaveRadius;
+
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
 
         if (!isPlayer) {
-            StartCoroutine(ChooseRandomWave());
+            StartCoroutine(TimedTriggerSingleWave());
         }
 
         //Initialize the coolDownTimer to be the coolDownDuration
@@ -66,23 +70,16 @@ public class WaveController : MonoBehaviour {
             else {
                 GetComponent<NPCMovementControl>().Stop();
             }
-
-            //Handle animations
-            HandleSingleWave();
         }
-    }
-
-	void HandleSingleWave() {
-        if (!stateInfo.IsName("SingleWave")) return;
-
-		//TO DO
     }
 
 	void TriggerAreaWave() {
         if (!animator.GetBool("Wave2")) {
             Collider2D[] collided = Physics2D.OverlapCircleAll(transform.position, areaWaveRadius);
 
+            //force them out of their current animation
             animator.SetTrigger("Idle");
+            //set them to do the area wave
             animator.SetTrigger("Wave2");
 
             if (isPlayer) MakeOthershappy(collided);
@@ -96,15 +93,54 @@ public class WaveController : MonoBehaviour {
         }
     }
 
-    IEnumerator ChooseRandomWave() {
+    IEnumerator TimedTriggerSingleWave() {
         while (true) {
             yield return new WaitForSeconds(Random.Range(chooseRandomWaveDelay.x, chooseRandomWaveDelay.y));
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-                currWave = Random.Range(1, numWaves + 1);
-                animator.SetTrigger("Wave" + currWave);
+                animator.SetTrigger("Wave2");
+                Transform target = SingleWave();
+                
+                if (target) {
+                    SingleWaveback(target);
+                    InfluenceHappy(target);
+                }
             }
         }
 
+    }
+
+    void InfluenceHappy(Transform target) {
+        HappyController targetHappyController = target.GetComponent<HappyController>();
+        HappyController selfHappyController = GetComponent<HappyController>();
+
+        if (targetHappyController) {
+            if(targetHappyController.currentHappiness < selfHappyController.currentHappiness) {
+                targetHappyController.IncreaseHappiness();
+            }
+        }
+    }
+
+    //Returns the transform of one object that is detected when you do a single wave
+    Transform SingleWave() {
+        LayerMask targetLayer = LayerMask.GetMask("Person");
+
+        //Default right
+        float xFacingDir = gameObject.GetComponent<SpriteRenderer>().flipX ? 1 : -1;
+
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position + Vector3.right * singleWaveRange * xFacingDir, singeWaveRadius);
+
+        Debug.DrawRay(transform.position, Vector3.right * singleWaveRange * xFacingDir);
+
+        foreach (Collider2D coll in colls) {
+            if (coll.gameObject != gameObject && coll.GetComponent<WaveController>()) {
+
+                Debug.Log(coll.gameObject.name);
+
+                return coll.transform;
+            }
+        }
+
+        return null;
     }
 
     void HandleWaverInput() {
@@ -112,6 +148,11 @@ public class WaveController : MonoBehaviour {
         switch (waveState)
         {
             case WaveState.Ready:
+
+                if (Input.GetButtonDown("Wave1")) {
+                    animator.SetTrigger("Wave1");
+                }
+
                 if (Input.GetButtonDown("Wave2"))
                 {
                     TriggerAreaWave();
@@ -126,7 +167,6 @@ public class WaveController : MonoBehaviour {
                 //its not worth it to count
                 //its prob like 1 second might as well add it to the
                 //cool down timer initially
-
                 waveState = WaveState.CoolDown;
 
                 break;
@@ -145,18 +185,35 @@ public class WaveController : MonoBehaviour {
         
     }
 
-	//Use for single later
-    void TurnWavedToSelf(CollisionTrigger2D trigger, Collider2D coll) {
-        if (coll.gameObject.layer == LayerMask.NameToLayer("Person")) {
-            Transform waved = coll.transform;
-            Transform waver = transform;
+    void SingleWaveback(Transform waved) {
+        Transform waver = transform;
 
-            Vector2 wavedToWaver = waver.position - waved.position;
+        Vector2 wavedToWaver = waver.position - waved.position;
 
-            float xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
 
-            waved.localScale = new Vector3(-xDir * 0.5f, transform.localScale.y);
+        MovementControl moveControl = waved.GetComponent<MovementControl>();
+
+        moveControl.FlipIt(wavedToWaver);
+        
+
+        WaveController waveController = waved.GetComponent<WaveController>();
+
+        if (waveController && !waveController.animator.GetBool("Wave2")) {
+            //Force out of their animation
+            waveController.animator.SetTrigger("Idle");
+            //Wave 
+            waveController.animator.SetTrigger("Wave2");
+
+            //Reset Coroutine
+            if (!waveController.isPlayer) {
+                waveController.ResetTimedTriggerSingleWave();
+            }
         }
+    }
+
+    void ResetTimedTriggerSingleWave() {
+        StopAllCoroutines();
+        StartCoroutine(TimedTriggerSingleWave());
     }
 
     void MakeOthershappy(Collider2D[] targets)
