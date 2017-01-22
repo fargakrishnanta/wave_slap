@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SlapMe : MonoBehaviour {
@@ -16,6 +17,11 @@ public class SlapMe : MonoBehaviour {
     public GameObject heartbutton;
 
     public bool InGame = true;
+
+    public Image OneDot;
+    public Image TwoDot;
+    public Image ThreeDot;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -92,8 +98,30 @@ public class SlapMe : MonoBehaviour {
                
                 DisableStuff();
             }
-                
+        }
 
+        switch (MaxSlapCount)
+        {
+            case 3:
+                OneDot.enabled = true;
+                TwoDot.enabled = true;
+                ThreeDot.enabled = true;
+                break;
+            case 2:
+                OneDot.enabled = true;
+                TwoDot.enabled = true;
+                ThreeDot.enabled = false;
+                break;
+            case 1:
+                OneDot.enabled = true;
+                TwoDot.enabled = false;
+                ThreeDot.enabled = false;
+                break;
+            default:
+                OneDot.enabled = false;
+                TwoDot.enabled = false;
+                ThreeDot.enabled = false;
+                break;
         }
     }
 
