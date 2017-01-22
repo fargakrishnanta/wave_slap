@@ -1165,11 +1165,6 @@ Prefab:
       propertyPath: em
       value: 
       objectReference: {fileID: 107469704}
-    - target: {fileID: 114000011291319814, guid: 88543e5cee4d5324486828362294e7e1,
-        type: 2}
-      propertyPath: numOfNPCAtStart
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88543e5cee4d5324486828362294e7e1, type: 2}
   m_IsPrefabParent: 0

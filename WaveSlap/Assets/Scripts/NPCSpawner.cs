@@ -12,10 +12,10 @@ public class NPCSpawner : MonoBehaviour {
     public int numOfSpawnAtOnce = 1;
     public int maxNumOfSpawnAtOnce = 4;
 
-    public float minX = -12.5f;//-12.5f
-    public float maxX = 12.5f;//12.5f
-    public float minY = -3.9f;//-3.9f
-    public float maxY = 3.9f;//3.9f
+    public float minX = -8.18f;//-12.5f
+    public float maxX = 8.18f;//12.5f
+    public float minY = -5.17f;//-3.9f
+    public float maxY = 5.17f;//3.9f
 
     public List<GameObject> prefabNPC_List;
     public GameObject prefabSlapper;
