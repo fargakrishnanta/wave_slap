@@ -87,8 +87,8 @@ public class GlobalHappyController : MonoBehaviour {
     {
         //Debug.Log("received message from GHC_WaverSpawned");
 
-        addNPC_byTag("Player", true);
-        shuffleList();
+        addNPC_byTag("Player", true, true);
+        //shuffleList();
     }
     private void GHC_InitialHordeSpawned(object sender, NPCEventArgs e)
     {
@@ -144,6 +144,31 @@ public class GlobalHappyController : MonoBehaviour {
     {
         GameObject gameObject = GameObject.FindGameObjectWithTag(tag);
         NPCList.Add(gameObject);
+
+        if (reCalcStats)
+        {
+            calcGlobalHappyScore();
+        }
+    }
+    public void addNPC_byTag(string tag, bool reCalcStats, bool randomIndexFlag)
+    {
+        GameObject gameObject = GameObject.FindGameObjectWithTag(tag);
+
+        if (randomIndexFlag)
+        {
+            //add gameObject with specified tag
+            //to random index in the list
+
+            int randomIndex = Random.Range(0, NPCList.Count);
+            GameObject temp = NPCList[randomIndex];
+            NPCList[randomIndex] = gameObject;
+
+            NPCList.Add(temp);//add the switched NPC back into the list
+        }
+        else
+        {
+            NPCList.Add(gameObject);
+        }
 
         if (reCalcStats)
         {

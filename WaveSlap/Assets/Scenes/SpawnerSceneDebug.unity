@@ -2159,7 +2159,7 @@ Prefab:
     - target: {fileID: 114000010782751494, guid: c682bd98755bf6749bc58a4853a76a95,
         type: 2}
       propertyPath: colorScaleFunctionType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000010782751494, guid: c682bd98755bf6749bc58a4853a76a95,
         type: 2}
