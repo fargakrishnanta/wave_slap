@@ -25,6 +25,7 @@ GameObject:
   - 114: {fileID: 114000013792892444}
   - 114: {fileID: 114000010095954302}
   - 114: {fileID: 114000012304928662}
+  - 95: {fileID: 95000010359172724}
   m_Layer: 10
   m_Name: Slappy
   m_TagString: Untagged
@@ -76,6 +77,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
+--- !u!95 &95000010359172724
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011731652076}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f37f3af3181e39418b401a2616652a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010095954302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8250c720547b641b940f9716562bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_speed: 3
 --- !u!212 &212000010909776550
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -146,7 +165,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: e9c304bef0d35ee478c139b0e2211323, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
