@@ -12,10 +12,10 @@ public class NPCSpawner : MonoBehaviour {
     public int numOfSpawnAtOnce = 1;
     public int maxNumOfSpawnAtOnce = 4;
 
-    public float minX = -8.18f;//-12.5f
-    public float maxX = 8.18f;//12.5f
-    public float minY = -5.17f;//-3.9f
-    public float maxY = 5.17f;//3.9f
+    public float minX = -8f;//-12.5f
+    public float maxX = 8f;//12.5f
+    public float minY = -5f;//-3.9f
+    public float maxY = 4.67f;//3.9f
 
     public List<GameObject> prefabNPC_List;
     public GameObject prefabSlapper;
@@ -23,9 +23,16 @@ public class NPCSpawner : MonoBehaviour {
     //Event Manager
     public EventManager em;//MUST BE SET IN INSPECTOR
 
+    void Awake()
+    {
+        em = GameObject.Find("EventManager").GetComponent<EventManager>();
+
+        em.NPCRemoved += Spawner_NPCRemoved;
+    }
+
     // Use this for initialization
     void Start () {
-        em = GameObject.Find("EventManager").GetComponent<EventManager>();
+        
 
         spawnInitialHorde();
         spawnWaver();
@@ -39,6 +46,12 @@ public class NPCSpawner : MonoBehaviour {
         {
             spawnNumOfNPC(2);
         }
+    }
+
+    private void Spawner_NPCRemoved(object sender, NPCEventArgs e)
+    {
+        //Debug.Log("received message from Spawner_NPCRemoved");
+        
     }
 
     //   $$$$$$$$$$$$$$$$$$$

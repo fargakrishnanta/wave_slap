@@ -53,13 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfNPC: 0
   maxNumOfNPC: 40
-  numOfNPCAtStart: 20
+  numOfNPCAtStart: 15
   numOfSpawnAtOnce: 1
   maxNumOfSpawnAtOnce: 4
-  minX: -8.1
-  maxX: 8.1
-  minY: -5.1
-  maxY: 5.1
+  minX: -8
+  maxX: 8
+  minY: -5
+  maxY: 4.5
   prefabNPC_List:
   - {fileID: 1000013616571796, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
   - {fileID: 1000013616571796, guid: 6359efe24671bdb44b43013d87d14849, type: 2}

@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour {
     public event NPCEventHandler NPCSpawned;
     public event NPCEventHandler WaverSpawned;
     public event NPCEventHandler InitialHordeSpawned;
+    public event NPCEventHandler NPCRemoved;
 
     public void EM_HappinessIncreased()
     {
@@ -49,6 +50,13 @@ public class EventManager : MonoBehaviour {
         if (InitialHordeSpawned != null)
         {
             InitialHordeSpawned(this, new NPCEventArgs());
+        }
+    }
+    public void EM_NPC_Removed()
+    {
+        if (NPCRemoved != null)
+        {
+            NPCRemoved(this, new NPCEventArgs());
         }
     }
 }
