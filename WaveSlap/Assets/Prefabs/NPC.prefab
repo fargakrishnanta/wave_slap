@@ -289,7 +289,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: fa46b820971bbd54fa46ce9889e734e2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 2
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -405,7 +405,6 @@ MonoBehaviour:
   numWaves: 3
   chooseRandomWaveDelay: {x: 2, y: 5}
   currWave: 0
-  personAudio: {fileID: 0}
   areaWaveDelay: 0
   waveState: 0
   isStop: 0
@@ -414,6 +413,9 @@ MonoBehaviour:
   areaWaveRadius: 2
   singleWaveRange: 1
   singeWaveRadius: 1
+  singleWaveSound: {fileID: 8300000, guid: 97da330d84974334ea2d1992b54d8115, type: 3}
+  areaWaveSound: {fileID: 8300000, guid: bed134ff9201f2642a22b3183f15d609, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &114000011789003406
 MonoBehaviour:
   m_ObjectHideFlags: 1

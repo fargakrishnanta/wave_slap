@@ -186,6 +186,8 @@ MonoBehaviour:
   CoolDown: 1
   m_DashVisualFeedback: {fileID: 1000013802941246, guid: dddf6fb8694401e488730973479369d9,
     type: 2}
+  dashSound: {fileID: 8300000, guid: c68cf57c962ba3048a6e4d22a8d1f5f6, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &114000012304928662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,9 +211,9 @@ MonoBehaviour:
   OneDot: {fileID: 0}
   TwoDot: {fileID: 0}
   ThreeDot: {fileID: 0}
-  m_slapSound: {fileID: 0}
+  m_slapSound: {fileID: 8300000, guid: 02818d454802e0949963905631cce85f, type: 3}
   m_successSound: {fileID: 0}
-  m_failSound: {fileID: 0}
+  m_failSound: {fileID: 8300000, guid: db88bef9a7b21bc4f8adb228bda567bb, type: 3}
 --- !u!114 &114000013792892444
 MonoBehaviour:
   m_ObjectHideFlags: 1

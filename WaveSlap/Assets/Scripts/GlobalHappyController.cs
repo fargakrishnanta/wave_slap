@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GlobalHappyController : MonoBehaviour {
 
@@ -431,7 +432,7 @@ public class GlobalHappyController : MonoBehaviour {
         }
 
         if(totalHappyScore >= maxHappinessLevels * numOfNPC) {
-            Debug.Log("Waver Wins");
+            SceneManager.LoadScene("WaverWinScene");
         }
 
         //update the 
