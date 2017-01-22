@@ -54,9 +54,10 @@ public class WaveController : MonoBehaviour {
             if (isPlayer) {
                 HandleWaverInput();
                 GetComponent<WaverMovement>().enabled = true;
+            }else
+            {
+                GetComponent<NPCMovementControl>().Resume();
             }
-
-
         }
         else {
             if (isPlayer) {
@@ -83,6 +84,8 @@ public class WaveController : MonoBehaviour {
 
             animator.SetTrigger("Idle");
             animator.SetTrigger("Wave2");
+
+            if (isPlayer) MakeOthershappy(collided);
 
             foreach(Collider2D coll in collided) {
                 WaveController waveController = coll.gameObject.GetComponent<WaveController>();
@@ -153,6 +156,18 @@ public class WaveController : MonoBehaviour {
             float xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
 
             waved.localScale = new Vector3(-xDir * 0.5f, transform.localScale.y);
+        }
+    }
+
+    void MakeOthershappy(Collider2D[] targets)
+    {
+        foreach(Collider2D target in targets)
+        {
+            HappyController happyController = target.GetComponent<HappyController>();
+            if (happyController)
+            {
+                happyController.IncreaseHappiness();
+            }
         }
     }
 }

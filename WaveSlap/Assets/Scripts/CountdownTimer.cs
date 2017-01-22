@@ -24,6 +24,8 @@ public class CountdownTimer : MonoBehaviour {
     public Image MTwo;
     public Image SOne;
     public Image STwo;
+
+    private bool isPaused = false;
 	// Use this for initialization
 	void Start () {
 	
@@ -31,7 +33,16 @@ public class CountdownTimer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        MaxTime -= Time.deltaTime;
+
+        if (!isPaused)
+        {
+            MaxTime -= Time.deltaTime;
+            if (MaxTime <= 0)
+            {
+                MaxTime = 0;
+                GameOver();
+            }
+        }
         PrintTime();
 	}
 
@@ -56,7 +67,6 @@ public class CountdownTimer : MonoBehaviour {
                 MTwo.sprite = SpriteSelection(letter.ToString());
             }
             index++;
-           
         }
         index = 0;
         foreach (var letter in seconds)
@@ -72,11 +82,20 @@ public class CountdownTimer : MonoBehaviour {
                 STwo.sprite = SpriteSelection(letter.ToString());
             }
             index++;
-
         }
 
+       
     }
 
+    public void Pause()
+    {
+        isPaused = true;
+    }
+
+    public void Resume()
+    {
+        isPaused = false;
+    }
     Sprite SpriteSelection(string a)
     {
         switch (a)
@@ -104,5 +123,10 @@ public class CountdownTimer : MonoBehaviour {
             default:
                 return S0;
         }
+    }
+
+    void GameOver()
+    {
+        Debug.Log("GAMEOVER");
     }
 }

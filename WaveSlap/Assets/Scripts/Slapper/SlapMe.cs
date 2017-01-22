@@ -8,6 +8,9 @@ public class SlapMe : MonoBehaviour {
 
     [SerializeField]
     public int MaxSlapCount;
+
+    public GameObject RightSlapPanel;
+    public GameObject WrongSlapPanel;
 	// Use this for initialization
 	void Start () {
 	
@@ -19,21 +22,34 @@ public class SlapMe : MonoBehaviour {
         {
             SummonDaRay();
         }
+
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            WrongSlapPanel.SetActive(false);
+            EnableStuff();
+        }
 	}
 
     /*Ray Cast dem slap mouse click*/
     void SummonDaRay()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        LayerMask filter = LayerMask.GetMask("Person");
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, filter.value);
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Person"))
+            if (CheckInBoundary(hit.collider.gameObject.transform.position))
             {
-                if (CheckInBoundary(hit.collider.gameObject.transform.position))
+                if (hit.collider.gameObject.name == "Waver")
                 {
-                    SlapMePlease();
+                    SlapMePlease(true);
+                }else
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Person"))
+                {
+               
+                    SlapMePlease(false);
                 }
+               
             }
 
         }
@@ -49,16 +65,62 @@ public class SlapMe : MonoBehaviour {
     }
 
     //TODO Slapping
-    bool SlapMePlease()
+    void SlapMePlease(bool a)
     {
         
         if(MaxSlapCount > 0)
         {
             MaxSlapCount--;
-            Debug.Log("SLAPPPPP MMMEEE");
-            return true;
-        }
+           
+            if (a)
+            {
+                RightSlapPanel.SetActive(true);
+               
+                DisableStuff();
+                
+            }
+            else
+            {
+                WrongSlapPanel.SetActive(true);
+               
+                DisableStuff();
+            }
+                
 
-        return false;
+        }
+    }
+
+    void DisableStuff()
+    {
+        this.gameObject.GetComponent<Slapper>().enabled = false;
+        this.gameObject.GetComponent<SlappyDash>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<WaverMovement>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<WaveController>().enabled = false;
+
+        var ogs = GameObject.FindGameObjectsWithTag("NPC");
+        foreach(var og in ogs)
+        {
+            og.GetComponent<NPCMovementControl>().Stop();
+            og.gameObject.GetComponent<HappyController>().enabled = false;
+            og.gameObject.GetComponent<WaveController>().enabled = false;
+
+        }
+    }
+
+    void EnableStuff()
+    {
+        this.gameObject.GetComponent<Slapper>().enabled = true;
+        this.gameObject.GetComponent<SlappyDash>().enabled = true;
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<WaverMovement>().enabled = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<WaveController>().enabled = true;
+
+        var ogs = GameObject.FindGameObjectsWithTag("NPC");
+        foreach (var og in ogs)
+        {
+            og.GetComponent<NPCMovementControl>().Resume();
+            og.gameObject.GetComponent<HappyController>().enabled = true;
+            og.gameObject.GetComponent<WaveController>().enabled = true;
+        }
     }
 }

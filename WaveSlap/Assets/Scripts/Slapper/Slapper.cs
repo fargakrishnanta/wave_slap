@@ -12,18 +12,16 @@ public class Slapper : MonoBehaviour {
 
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        m_isSet = true;
     }
 	// Use this for initialization
 	void Start () {
+        
         Slappy = this.gameObject;
         m_rb = this.gameObject.GetComponent<Rigidbody2D>();
 
-        if (m_isSet)
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
+     
     }
 	
 	// Update is called once per frame

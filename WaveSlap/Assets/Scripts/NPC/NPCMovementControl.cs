@@ -14,8 +14,8 @@ public class NPCMovementControl : MonoBehaviour {
     public Vector2 changeDirectionDelayRange;
     public float movementSpeed;
 
-    Vector2 currentDirection;
-
+    public Vector2 currentDirection;
+    public bool isStop = false;
     
 
     // Use this for initialization
@@ -45,17 +45,34 @@ public class NPCMovementControl : MonoBehaviour {
 
     IEnumerator ChangeDirection() {
         while (true) {
-
-
+            
             currentDirection = availableDirections[Random.Range(0, availableDirections.Count)];
             transform.localScale = new Vector3(currentDirection.x == 0 ? transform.localScale.x : -currentDirection.x * 0.5f, transform.localScale.y);
-
             yield return new WaitForSeconds(Random.Range(changeDirectionDelayRange.x, changeDirectionDelayRange.y));
         }
     }
 
+    public void ResetDir()
+    {
+        StopCoroutine(ChangeDirection());
+        StartCoroutine(ChangeDirection());
+    }
+
     public void Stop() {
+
+        StopAllCoroutines();
         currentDirection = Vector2.zero;
+        isStop = true;
+    }
+
+    public void Resume()
+    {
+        if (isStop)
+        {
+            StartCoroutine(ChangeDirection());
+            isStop = false;
+        }   
+       
     }
     /*   
        Transform wanderTarget;
