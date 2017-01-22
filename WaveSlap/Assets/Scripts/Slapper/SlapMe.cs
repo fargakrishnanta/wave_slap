@@ -11,6 +11,8 @@ public class SlapMe : MonoBehaviour {
 
     public GameObject RightSlapPanel;
     public GameObject WrongSlapPanel;
+
+    public GameObject timerClass;
 	// Use this for initialization
 	void Start () {
 	
@@ -105,6 +107,9 @@ public class SlapMe : MonoBehaviour {
             og.gameObject.GetComponent<WaveController>().enabled = false;
 
         }
+
+        timerClass.GetComponent<CountdownTimer>().Pause();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+
     }
 
     void EnableStuff()

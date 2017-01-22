@@ -26,22 +26,30 @@ public class GlobalHappyController : MonoBehaviour {
     //Event
     public EventManager em;//MUST BE SET IN INSPECTOR
 
-    // Use this for initialization
-    void Start () {
+    void Awake()
+    {
         NPCList = new List<GameObject>();//list of all NPC's game objects
-
-        colorLense = new Color(0.333f, 0.333f, 0.333f);
 
         em = GameObject.Find("EventManager").GetComponent<EventManager>();
 
         //EVENTS
         em.HappinessIncreased += GHC_HappinessIncreased;
         em.HappinessDecreased += GHC_HappinessDecreased;
+        em.NPCSpawned += GHC_NPCSpawned;
+        em.WaverSpawned += GHC_WaverSpawned;
+        em.InitialHordeSpawned += GHC_InitialHordeSpawned;
+    }
+
+    // Use this for initialization
+    void Start () {
+        
+
+        colorLense = new Color(0.333f, 0.333f, 0.333f);
 
         //Initially add Waver (Player 1) to the NPC List
-        addNPC_byTag("Player", false);
-        findAllNPC();
-        applyColorScale();
+
+        //findAllNPC();
+        //applyColorScale();
     }
 
     private void GHC_HappinessIncreased(object sender, NPCEventArgs e)
@@ -53,6 +61,29 @@ public class GlobalHappyController : MonoBehaviour {
     {
         //Debug.Log("received message from GHC_HappinessDecreased");
         calcGlobalHappyScore();
+    }
+    private void GHC_NPCSpawned(object sender, NPCEventArgs e)
+    {
+        //Debug.Log("received message from GHC_NPCSpawned");
+
+        //the NPC to be spawned is stored in the NPCEventArgs
+        //as a gameObject variable
+        addNPC(e.gameObject);
+
+    }
+    private void GHC_WaverSpawned(object sender, NPCEventArgs e)
+    {
+        //Debug.Log("received message from GHC_WaverSpawned");
+
+        addNPC_byTag("Player", true);
+    }
+    private void GHC_InitialHordeSpawned(object sender, NPCEventArgs e)
+    {
+        //Debug.Log("received message from GHC_InitialHordeSpawned");
+
+        findAllNPC();
+        calcGlobalHappyScore();
+        applyColorScale();
     }
 
     // Update is called once per frame
