@@ -38,6 +38,16 @@ public class GameManager : MonoBehaviour{
     {
         SceneManager.LoadScene(2);
     }
+
+    public void LoadJellyBean()
+    {
+        SceneManager.LoadScene(5);
+    }
+
+    public void LoadWaveWin()
+    {
+        SceneManager.LoadScene(6);
+    }
 	// Use this for initialization
 	
 }

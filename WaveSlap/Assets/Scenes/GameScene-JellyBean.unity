@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907cf08bc57ae4f4395c7aa33e83e2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxTime: 33
+  MaxTime: 120
   S1: {fileID: 21300000, guid: 8c55a652048061e4c8ca05bd8e94bc90, type: 3}
   S2: {fileID: 21300000, guid: f11e24b6baaa9464e8ca45b37fc0bd63, type: 3}
   S3: {fileID: 21300000, guid: 73f0872aaa3f62e48b84cc4d826ca4af, type: 3}
@@ -1546,7 +1546,7 @@ Prefab:
     - target: {fileID: 114000010782751494, guid: c682bd98755bf6749bc58a4853a76a95,
         type: 2}
       propertyPath: colorScaleFunctionType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}

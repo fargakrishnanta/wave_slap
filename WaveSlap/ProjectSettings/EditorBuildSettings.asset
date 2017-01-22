@@ -15,3 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/WaverInstruction.unity
   - enabled: 1
     path: Assets/Scenes/SlapperInstruction.unity
+  - enabled: 1
+    path: Assets/Scenes/GameScene-JellyBean.unity
+  - enabled: 1
+    path: Assets/Scenes/BigWaverWinScene.unity
