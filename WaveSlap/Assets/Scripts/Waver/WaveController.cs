@@ -22,6 +22,7 @@ public class WaveController : MonoBehaviour {
 
     public WaveState waveState = WaveState.Ready;
 
+    public bool isStop = false;
     //Wave cool down and state variables
     public enum WaveState
     {
@@ -108,6 +109,23 @@ public class WaveController : MonoBehaviour {
                     InfluenceHappy(target);
                 }
             }
+        }
+
+    }
+
+    public void Stop()
+    {
+
+        StopAllCoroutines();
+        isStop = true;
+    }
+
+    public void Resume()
+    {
+        if (isStop)
+        {
+            StartCoroutine(TimedTriggerSingleWave());
+            isStop = false;
         }
 
     }

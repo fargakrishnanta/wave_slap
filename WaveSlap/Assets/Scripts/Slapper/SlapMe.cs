@@ -13,6 +13,7 @@ public class SlapMe : MonoBehaviour {
     public GameObject WrongSlapPanel;
 
     public GameObject timerClass;
+    public GameObject heartbutton;
 	// Use this for initialization
 	void Start () {
 	
@@ -28,6 +29,7 @@ public class SlapMe : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Alpha4))
         {
             WrongSlapPanel.SetActive(false);
+            timerClass.GetComponent<CountdownTimer>().Resume();
             EnableStuff();
         }
 	}
@@ -77,7 +79,7 @@ public class SlapMe : MonoBehaviour {
             if (a)
             {
                 RightSlapPanel.SetActive(true);
-               
+                heartbutton.SetActive(true);
                 DisableStuff();
                 
             }
@@ -103,6 +105,7 @@ public class SlapMe : MonoBehaviour {
         foreach(var og in ogs)
         {
             og.GetComponent<NPCMovementControl>().Stop();
+            og.GetComponent<WaveController>().Stop();
             og.gameObject.GetComponent<HappyController>().enabled = false;
             og.gameObject.GetComponent<WaveController>().enabled = false;
 
@@ -124,6 +127,7 @@ public class SlapMe : MonoBehaviour {
         foreach (var og in ogs)
         {
             og.GetComponent<NPCMovementControl>().Resume();
+            og.GetComponent<WaveController>().Resume();
             og.gameObject.GetComponent<HappyController>().enabled = true;
             og.gameObject.GetComponent<WaveController>().enabled = true;
         }
