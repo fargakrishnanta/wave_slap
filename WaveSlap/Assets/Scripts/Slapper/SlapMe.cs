@@ -108,7 +108,7 @@ public class SlapMe : MonoBehaviour {
 
         }
 
-        timerClass.GetComponent<CountdownTimer>().Pause();
+        timerClass.GetComponent<CountdownTimer>().Pause();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 
     }
 

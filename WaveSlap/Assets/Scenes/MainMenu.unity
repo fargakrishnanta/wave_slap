@@ -305,8 +305,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1412740454}
-        m_MethodName: OnClickStart
+      - m_Target: {fileID: 114000011925703242, guid: 571b255f0394b424c93a54050d7114e5,
+          type: 2}
+        m_MethodName: InGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

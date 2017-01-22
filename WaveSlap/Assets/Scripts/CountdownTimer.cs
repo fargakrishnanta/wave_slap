@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CountdownTimer : MonoBehaviour {
@@ -127,6 +127,7 @@ public class CountdownTimer : MonoBehaviour {
 
     void GameOver()
     {
+        SceneManager.LoadScene(2);
         //Debug.Log("GAMEOVER");
     }
 }
