@@ -49,40 +49,45 @@ public class CountdownTimer : MonoBehaviour {
     void PrintTime()
     {
         string minutes = Mathf.Floor(MaxTime / 60).ToString("00");
-        string seconds = Mathf.Floor(MaxTime % 60).ToString("00");
+        float seconds = Mathf.Floor(MaxTime % 60);
 
         string whatever = minutes + ":" + seconds;
 
         int index = 0;
-        foreach(var letter in minutes)
+
+        if(minutes == "00" && seconds <= 30f)
         {
-            if (index == 2)
-                index = 0;
-            if (index == 0)
+            foreach (var letter in minutes)
             {
-                MOne.sprite = SpriteSelection(letter.ToString());
+                if (index == 2)
+                    index = 0;
+                if (index == 0)
+                {
+                    MOne.sprite = SpriteSelection(letter.ToString());
+                }
+                else if (index == 1)
+                {
+                    MTwo.sprite = SpriteSelection(letter.ToString());
+                }
+                index++;
             }
-            else if(index == 1)
+            index = 0;
+            foreach (var letter in seconds.ToString("00"))
             {
-                MTwo.sprite = SpriteSelection(letter.ToString());
+                if (index == 2)
+                    index = 0;
+                if (index == 0)
+                {
+                    SOne.sprite = SpriteSelection(letter.ToString());
+                }
+                else if (index == 1)
+                {
+                    STwo.sprite = SpriteSelection(letter.ToString());
+                }
+                index++;
             }
-            index++;
         }
-        index = 0;
-        foreach (var letter in seconds)
-        {
-            if (index == 2)
-                index = 0;
-            if (index == 0)
-            {
-                SOne.sprite = SpriteSelection(letter.ToString());
-            }
-            else if (index == 1)
-            {
-                STwo.sprite = SpriteSelection(letter.ToString());
-            }
-            index++;
-        }
+        
 
        
     }
