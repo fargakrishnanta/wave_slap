@@ -121,11 +121,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boundary: 2
-  MaxSlapCount: 2
+  MaxSlapCount: 3
   RightSlapPanel: {fileID: 0}
   WrongSlapPanel: {fileID: 0}
   timerClass: {fileID: 0}
   heartbutton: {fileID: 0}
+  gameManager: {fileID: 1000010585535486, guid: 571b255f0394b424c93a54050d7114e5,
+    type: 2}
   InGame: 1
   OneDot: {fileID: 0}
   TwoDot: {fileID: 0}
