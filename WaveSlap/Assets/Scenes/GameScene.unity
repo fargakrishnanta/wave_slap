@@ -945,6 +945,17 @@ Prefab:
       propertyPath: WrongSlapPanel
       value: 
       objectReference: {fileID: 539838106}
+    - target: {fileID: 212000010909776550, guid: 7383f08190588ab47b72fcd39cd85624,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e9c304bef0d35ee478c139b0e2211323,
+        type: 3}
+    - target: {fileID: 114000013792892444, guid: 7383f08190588ab47b72fcd39cd85624,
+        type: 2}
+      propertyPath: m_speed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7383f08190588ab47b72fcd39cd85624, type: 2}
   m_IsPrefabParent: 0
@@ -1711,6 +1722,16 @@ Prefab:
       propertyPath: em
       value: 
       objectReference: {fileID: 1871961141}
+    - target: {fileID: 4000014139347100, guid: 43251614d6eadbe4eb131989b70a2fee, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000013246134018, guid: 43251614d6eadbe4eb131989b70a2fee,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d259c61e24475044097a929923b51dba,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43251614d6eadbe4eb131989b70a2fee, type: 2}
   m_IsPrefabParent: 0
@@ -1992,6 +2013,75 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6359efe24671bdb44b43013d87d14849, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1944171848
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010452173050, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010452173050, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010452173050, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010452173050, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010452173050, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010452173050, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010452173050, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010452173050, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010782751494, guid: c682bd98755bf6749bc58a4853a76a95,
+        type: 2}
+      propertyPath: em
+      value: 
+      objectReference: {fileID: 1871961141}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c682bd98755bf6749bc58a4853a76a95, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &1965861089 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011731652076, guid: 7383f08190588ab47b72fcd39cd85624,
+    type: 2}
+  m_PrefabInternal: {fileID: 613652081}
+--- !u!95 &1965861097
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1965861089}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f37f3af3181e39418b401a2616652a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &2057103790 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013155346012, guid: 7383f08190588ab47b72fcd39cd85624,
