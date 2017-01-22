@@ -59,11 +59,6 @@ public class SlapMe : MonoBehaviour {
            
         }
 
-        if (MaxSlapCount == 0)
-        {
-            gameManager.GetComponent<GameManager>().GameOver();
-            return;
-        }
     }
 
     /*Ray Cast dem slap mouse click*/
@@ -84,6 +79,11 @@ public class SlapMe : MonoBehaviour {
                 {
                
                     SlapMePlease(false);
+                    if (MaxSlapCount == 0)
+                    {
+                        gameManager.GetComponent<GameManager>().GameOver();
+                        return;
+                    }
                 }
                
             }
@@ -128,13 +128,13 @@ public class SlapMe : MonoBehaviour {
             else
             {
               
-
                 if (m_failSound) {
                     audioSource.clip = m_failSound;
                     audioSource.Play();
                 }
-
             }
+
+            
         }
 
         switch (MaxSlapCount)
