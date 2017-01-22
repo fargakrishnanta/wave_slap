@@ -23,9 +23,16 @@ public class NPCSpawner : MonoBehaviour {
     //Event Manager
     public EventManager em;//MUST BE SET IN INSPECTOR
 
+    void Awake()
+    {
+        em = GameObject.Find("EventManager").GetComponent<EventManager>();
+
+        em.NPCRemoved += Spawner_NPCRemoved;
+    }
+
     // Use this for initialization
     void Start () {
-        em = GameObject.Find("EventManager").GetComponent<EventManager>();
+        
 
         spawnInitialHorde();
         spawnWaver();
@@ -39,6 +46,12 @@ public class NPCSpawner : MonoBehaviour {
         {
             spawnNumOfNPC(2);
         }
+    }
+
+    private void Spawner_NPCRemoved(object sender, NPCEventArgs e)
+    {
+        //Debug.Log("received message from Spawner_NPCRemoved");
+        
     }
 
     //   $$$$$$$$$$$$$$$$$$$
