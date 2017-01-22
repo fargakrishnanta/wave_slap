@@ -20,6 +20,15 @@ public class GameManager : MonoBehaviour{
         SceneManager.LoadScene(0);
     }
 
+    public void StartWaverCutScene()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public void StartSlapperCutScene()
+    {
+        SceneManager.LoadScene(5);
+    }
     public void InGame()
     {
         SceneManager.LoadScene(1);

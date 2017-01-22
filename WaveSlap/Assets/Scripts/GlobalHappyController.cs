@@ -7,7 +7,9 @@ public class GlobalHappyController : MonoBehaviour {
     public float maxHappinessLevels = 3.0f;
 
     public float animSpeedCoeffecient = 1.8f;
-    public float musicSpeedCoeffecient = 1.8f;
+    public float musicLevelMinThreshold = 0.57f;
+    public float musicLevelMaxThreshold = 0.84f;
+
 
     public int numOfNPC;
     public List<GameObject> NPCList;
@@ -19,10 +21,12 @@ public class GlobalHappyController : MonoBehaviour {
 
     public GameObject backGroundIMG_Sad;
 
+    public BackgroundAudio backgroundAudio;
+
     public float darkestFloat;//default 0.333f
     public float colorScale;
     public float backgroundColorScale;
-    public float musicSpeedScale;//how fast the music play based on GlobalHappyScore
+    public int musicLevelCounter;//how fast the music play based on GlobalHappyScore
     public float animSpeedScale = 1f;//animation speed based on GlobalHappyScore
 
     public Color colorLense;
@@ -55,6 +59,7 @@ public class GlobalHappyController : MonoBehaviour {
         colorLense = new Color(darkestFloat, darkestFloat, darkestFloat);
 
         backGroundIMG_Sad = GameObject.Find("BackgroundIMG_Sad");
+        backgroundAudio = GetComponent<BackgroundAudio>();
 
         if (m_happyBar) {
             m_minBarPosX = m_happyBar.GetComponent<RectTransform>().anchoredPosition.x;
@@ -306,9 +311,27 @@ public class GlobalHappyController : MonoBehaviour {
     {
 
     }
-    public void applyMusicSpeedScale()
+    public void applyMusicLevel()
     {
+        switch (musicLevelCounter)
+        {
+            case 0:
+                backgroundAudio.PlaySound("level1", true);
+                backgroundAudio.StopSound("level2");
+                backgroundAudio.StopSound("level3");
+                break;
+            case 1:
+                backgroundAudio.PlaySound("level1", true);
+                backgroundAudio.PlaySound("level2", true);
+                backgroundAudio.StopSound("level3");
+                break;
+            case 2:
+                backgroundAudio.PlaySound("level1", true);
+                backgroundAudio.PlaySound("level2", true);
+                backgroundAudio.PlaySound("level3", true);
+                break;
 
+        }
     }
 
     //@@@@@@@@@@@@@@@@@@
@@ -389,7 +412,7 @@ public class GlobalHappyController : MonoBehaviour {
 
         //update the 
         //musicSpeedScale
-        updateMusicSpeed();
+        updateMusicLevel();
         //colorScale
         updateColorScale();
         //animSpeedScale
@@ -400,16 +423,27 @@ public class GlobalHappyController : MonoBehaviour {
         //apply scales
         applyColorScaleType();
         applyAnimSpeedScale();
-        applyMusicSpeedScale();
+        applyMusicLevel();
         applyBackgroundColorScale();
     }
     void updateanimSpeedScale()
     {
         animSpeedScale = GlobalHappyScore * animSpeedCoeffecient;
     }
-    void updateMusicSpeed()
+    void updateMusicLevel()
     {
-        musicSpeedScale = GlobalHappyScore * musicSpeedCoeffecient;
+        if (GlobalHappyScore < musicLevelMinThreshold)
+        {
+            musicLevelCounter = 0;
+        }
+        else if(GlobalHappyScore >= musicLevelMinThreshold && GlobalHappyScore < musicLevelMaxThreshold)
+        {
+            musicLevelCounter = 1;
+        }
+        else if (GlobalHappyScore >= musicLevelMaxThreshold)
+        {
+            musicLevelCounter = 2;
+        }
     }
     void updateColorScale()
     {

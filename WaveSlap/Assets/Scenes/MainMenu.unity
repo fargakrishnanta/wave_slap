@@ -176,7 +176,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 42d4951bb5736c3478157f15329795d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1b9e64cb33a4574ab1546ffe89bbcc8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -458,7 +458,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114000011925703242, guid: 571b255f0394b424c93a54050d7114e5,
           type: 2}
-        m_MethodName: InGame
+        m_MethodName: StartWaverCutScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -818,8 +818,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 146.14}
-  m_SizeDelta: {x: 700, y: 150}
+  m_AnchoredPosition: {x: 0, y: 160.11}
+  m_SizeDelta: {x: 580, y: 124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1535880165
 MonoBehaviour:
@@ -902,6 +902,7 @@ GameObject:
   - 92: {fileID: 1619973189}
   - 124: {fileID: 1619973188}
   - 81: {fileID: 1619973187}
+  - 114: {fileID: 1619973192}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -977,6 +978,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1619973192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1619973186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e87f5fce1f14b47a3f9626a210ef8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationList:
+  - objectsToAnimate:
+    - {fileID: 1146268857}
+    timeToComplete: 2
+    animationDelay: 3
+    animationType: 1
+    isComplete: 0
+    translateStartPoint: {x: 0, y: 0, z: 0}
+    translateEndPoint: {x: 0, y: 0, z: 0}
+  - objectsToAnimate:
+    - {fileID: 1146268857}
+    timeToComplete: 2
+    animationDelay: 3
+    animationType: 1
+    isComplete: 0
+    translateStartPoint: {x: 0, y: 0, z: 0}
+    translateEndPoint: {x: 0, y: 0, z: 0}
+  - objectsToAnimate:
+    - {fileID: 1146268857}
+    timeToComplete: 2
+    animationDelay: 3
+    animationType: 1
+    isComplete: 0
+    translateStartPoint: {x: 0, y: 0, z: 0}
+    translateEndPoint: {x: 0, y: 0, z: 0}
+  removeList: []
+  delay: 0
 --- !u!1 &1770894082
 GameObject:
   m_ObjectHideFlags: 0

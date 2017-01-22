@@ -426,8 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioFiles:
-  - {fileID: 8300000, guid: fa46b820971bbd54fa46ce9889e734e2, type: 3}
-  - {fileID: 8300000, guid: fa46b820971bbd54fa46ce9889e734e2, type: 3}
+  - {fileID: 8300000, guid: 97da330d84974334ea2d1992b54d8115, type: 3}
+  - {fileID: 8300000, guid: bed134ff9201f2642a22b3183f15d609, type: 3}
   audioKeys:
   - SingleWave
   - AreaWave
