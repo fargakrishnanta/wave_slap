@@ -58,14 +58,8 @@ public class MainMenuScript : MonoBehaviour {
 
     public void OnClickNext()
     {
-        InstructionP1.SetActive(false);
-        if(!InstructionP2.activeSelf)
-            InstructionP2.SetActive(true);
-        else
-        {
-            InstructionP1.SetActive(true);
-            InstructionP2.SetActive(false);
+       
             InstructionPanel.SetActive(false);
-        }
+        
     }
 }
