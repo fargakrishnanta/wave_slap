@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: WaveLoop
+  m_Controller: {fileID: 9100000, guid: 84e3b7631bbbfc847be9fcd5f13fa309, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: ffefbac6e0ad207468d46f0ac4311670, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f82b616a1f834a447993c4d000e820b3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4581b238fa2cc564e9b31347fffc3bcb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 263afdbb3aae14746a75f9bb3aa003ec, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b01ed80fc06c9344a8b9ded720a58a43, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 263afdbb3aae14746a75f9bb3aa003ec, type: 2}
