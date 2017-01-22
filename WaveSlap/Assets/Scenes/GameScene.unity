@@ -433,6 +433,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1 &314896095 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010769950552, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+    type: 2}
+  m_PrefabInternal: {fileID: 2064607488}
 --- !u!1 &443268199 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013599518504, guid: ddfae859dc9c27e46ba2d4fe72105f97,
@@ -1631,6 +1636,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.data[13].objectsToAnimate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010277333334, guid: ddfae859dc9c27e46ba2d4fe72105f97, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1662,6 +1677,49 @@ Prefab:
     - target: {fileID: 4000010277333334, guid: ddfae859dc9c27e46ba2d4fe72105f97, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013599518504, guid: ddfae859dc9c27e46ba2d4fe72105f97, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010769950552, guid: ddfae859dc9c27e46ba2d4fe72105f97, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.data[13].name
+      value: GETAJOB
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.data[13].objectsToAnimate.Array.data[0]
+      value: 
+      objectReference: {fileID: 314896095}
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.data[13].timeToComplete
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.data[13].animationDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.data[13].animationType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.data[13].translateStartPoint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013182800490, guid: ddfae859dc9c27e46ba2d4fe72105f97,
+        type: 2}
+      propertyPath: animationList.Array.data[13].isComplete
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ddfae859dc9c27e46ba2d4fe72105f97, type: 2}
