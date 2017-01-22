@@ -76,6 +76,8 @@ public class WaveController : MonoBehaviour {
 
 	void TriggerAreaWave() {
         if (!animator.GetBool("Wave2")) {
+            GetComponent<AudioSource>().Play();
+
             Collider2D[] collided = Physics2D.OverlapCircleAll(transform.position, areaWaveRadius);
 
             //force them out of their current animation
