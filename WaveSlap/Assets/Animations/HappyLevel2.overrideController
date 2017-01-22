@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: HappyLevel2
+  m_Controller: {fileID: 9100000, guid: 526c67433a51c7d4fa871b0654cc3855, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c0947d73a40bcfb41bd1bedaebad945f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ffefbac6e0ad207468d46f0ac4311670, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4fe4d3d5f228a0e4788a666703129605, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 42123362f4bc7be44945782f439ddacf, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0169bb35c144ed74889647e365d578ea, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 42123362f4bc7be44945782f439ddacf, type: 2}

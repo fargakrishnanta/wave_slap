@@ -385,6 +385,11 @@ MonoBehaviour:
   currentHappiness: 1
   happyCounter: {fileID: 212000013510170372}
   em: {fileID: 0}
+  delayDeath: 0
+  happyLevels:
+  - {fileID: 22100000, guid: 226c6f239d296a64d9396fa556a69062, type: 2}
+  - {fileID: 22100000, guid: ebbe2d9ee2e8e9b44922a36a01661222, type: 2}
+  - {fileID: 22100000, guid: 226c6f239d296a64d9396fa556a69062, type: 2}
 --- !u!114 &114000011423882976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,6 +406,7 @@ MonoBehaviour:
   chooseRandomWaveDelay: {x: 2, y: 5}
   currWave: 0
   personAudio: {fileID: 0}
+  areaWaveDelay: 0
   waveState: 0
   isStop: 0
   coolDownDuration: 0

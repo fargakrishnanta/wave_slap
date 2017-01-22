@@ -24,6 +24,11 @@ public class GlobalHappyController : MonoBehaviour {
     public Color colorLense = new Color(0.333f, 0.333f, 0.333f);
     public int colorScaleFunctionType;
 
+    [SerializeField]
+    private Transform m_happyBar;
+    [SerializeField]
+    private float m_minBarPosX;
+
     //Event
     public EventManager em;//MUST BE SET IN INSPECTOR
 
@@ -45,6 +50,9 @@ public class GlobalHappyController : MonoBehaviour {
     void Start () {
         colorLense = new Color(0.333f, 0.333f, 0.333f);
 
+        if (m_happyBar) {
+            m_minBarPosX = m_happyBar.GetComponent<RectTransform>().anchoredPosition.x;
+        }
     }
 
     private void GHC_HappinessIncreased(object sender, NPCEventArgs e)
@@ -234,6 +242,27 @@ public class GlobalHappyController : MonoBehaviour {
         //and 1 is everyone is at 3 happiness
         GlobalHappyScore = ((float)totalHappyScore) / maxHappinessLevels;
         GlobalHappyScore = GlobalHappyScore / ((float)numOfNPC);
+
+        if (m_happyBar) {
+            // "fixed" scores to remove the starting at 1 happiness...
+            float fixedTotalHappyScore = totalHappyScore - numOfNPC;
+            float maxHappinessLevel = maxHappinessLevels - 1;
+
+
+            //Assumes 0 = full bar
+            float range = Mathf.Abs(m_minBarPosX);
+            float percHappy = fixedTotalHappyScore / (maxHappinessLevel * numOfNPC);
+            float posFromStart = range * percHappy;
+
+
+            float pos = m_minBarPosX + posFromStart;
+            Debug.Log(pos);
+
+            Vector3 vecPos = m_happyBar.GetComponent<RectTransform>().anchoredPosition;
+            vecPos.x = pos;
+
+            m_happyBar.GetComponent<RectTransform>().anchoredPosition = vecPos;
+        }
 
         if(totalHappyScore >= maxHappinessLevels * numOfNPC) {
             Debug.Log("Waver Wins");

@@ -11,6 +11,7 @@ public class Slapper : MovementControl {
     private Vector3 m_target;
     private bool m_isSet;
 
+
     private Animator animator;
 
 	// Use this for initialization
@@ -42,7 +43,6 @@ public class Slapper : MovementControl {
         transform.position = Vector3.MoveTowards(transform.position, m_target, m_speed * Time.fixedDeltaTime);
 
         Vector3 deltaVel = (m_target - transform.position);
-
 
         FlipIt(deltaVel);
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HappyController : MonoBehaviour {
 
@@ -13,13 +14,21 @@ public class HappyController : MonoBehaviour {
     public SpriteRenderer happyCounter;
 
     //Event Manager
-    public EventManager em;//MUST BE SET IN INSPECTOR
+    public EventManager em;
 
     public float delayDeath;
+
+    [Header("Happy Level Animators")]
+    public List<AnimatorOverrideController> happyLevels;
+
+    private Animator animator;
 
     // Use this for initialization
     void Start () {
         em = GameObject.Find("EventManager").GetComponent<EventManager>();
+        animator = GetComponent<Animator>();
+
+        animator.runtimeAnimatorController = happyLevels[0];
 	}
 	
 	// Update is called once per frame
@@ -48,6 +57,9 @@ public class HappyController : MonoBehaviour {
         if (currentHappiness < maxHappiness) currentHappiness++;
 
         if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);
+
+        //-1 because we start at 1...
+        animator.runtimeAnimatorController = happyLevels[currentHappiness - 1];
 
         //Call the EM_HappinessIncreased function in the Event Manager
         //This in turn lets the GlobalHappinessController know 

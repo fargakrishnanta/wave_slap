@@ -23,9 +23,18 @@ public class SlapMe : MonoBehaviour {
     public Image TwoDot;
     public Image ThreeDot;
 
+    [SerializeField]
+    private AudioClip m_slapSound;
+    [SerializeField]
+    private AudioClip m_successSound;
+    [SerializeField]
+    private AudioClip m_failSound;
+
+    private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
-	
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -93,17 +102,33 @@ public class SlapMe : MonoBehaviour {
         {
             MaxSlapCount--;
            
+            if(m_slapSound) {
+                audioSource.clip = m_slapSound;
+                audioSource.Play();
+            }
+
             if (a)
             {
                 RightSlapPanel.SetActive(true);
                 heartbutton.SetActive(true);
                 DisableStuff();
-                
+
+                if (m_successSound) {
+                    audioSource.clip = m_successSound;
+                    audioSource.Play();
+                }
+
             }
             else
             {
                 WrongSlapPanel.SetActive(true);
-               
+
+                if (m_failSound) {
+                    audioSource.clip = m_failSound;
+                    audioSource.Play();
+                }
+
+
                 DisableStuff();
             }
         }
