@@ -321,13 +321,13 @@ public class GlobalHappyController : MonoBehaviour {
                 backgroundAudio.StopSound("level3");
                 break;
             case 1:
-                backgroundAudio.PlaySound("level1", true);
+                backgroundAudio.StopSound("level1");
                 backgroundAudio.PlaySound("level2", true);
                 backgroundAudio.StopSound("level3");
                 break;
             case 2:
-                backgroundAudio.PlaySound("level1", true);
-                backgroundAudio.PlaySound("level2", true);
+                backgroundAudio.StopSound("level1");
+                backgroundAudio.StopSound("level2");
                 backgroundAudio.PlaySound("level3", true);
                 break;
 
