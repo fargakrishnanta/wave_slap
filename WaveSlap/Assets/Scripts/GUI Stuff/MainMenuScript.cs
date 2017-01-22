@@ -12,6 +12,11 @@ public class MainMenuScript : MonoBehaviour {
     public GameObject StartPanel;
     public GameObject WaSlapPanel;
 
+    public GameObject InstructionPanel;
+    public GameObject InstructionP1;
+    public GameObject InstructionP2;
+    public GameObject nextBtn;
+
     private Rigidbody2D m_WaverRB;
     private Rigidbody2D m_SlapperRB;
 	// Use this for initialization
@@ -44,5 +49,23 @@ public class MainMenuScript : MonoBehaviour {
     {
         SceneManager.LoadScene(1);
         
+    }
+
+    public void OnClickInfo()
+    {
+        InstructionPanel.SetActive(true);
+    }
+
+    public void OnClickNext()
+    {
+        InstructionP1.SetActive(false);
+        if(!InstructionP2.activeSelf)
+            InstructionP2.SetActive(true);
+        else
+        {
+            InstructionP1.SetActive(true);
+            InstructionP2.SetActive(false);
+            InstructionPanel.SetActive(false);
+        }
     }
 }

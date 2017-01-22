@@ -1046,6 +1046,7 @@ MonoBehaviour:
   WrongSlapPanel: {fileID: 0}
   timerClass: {fileID: 0}
   heartbutton: {fileID: 0}
+  gameManager: {fileID: 0}
   InGame: 1
   OneDot: {fileID: 0}
   TwoDot: {fileID: 0}
@@ -1314,11 +1315,6 @@ Prefab:
       propertyPath: ThreeDot
       value: 
       objectReference: {fileID: 1972432154}
-    - target: {fileID: 114000012304928662, guid: 7383f08190588ab47b72fcd39cd85624,
-        type: 2}
-      propertyPath: MaxSlapCount
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7383f08190588ab47b72fcd39cd85624, type: 2}
   m_IsPrefabParent: 0
@@ -2481,6 +2477,7 @@ MonoBehaviour:
   WrongSlapPanel: {fileID: 0}
   timerClass: {fileID: 0}
   heartbutton: {fileID: 0}
+  gameManager: {fileID: 0}
   InGame: 1
   OneDot: {fileID: 0}
   TwoDot: {fileID: 0}
