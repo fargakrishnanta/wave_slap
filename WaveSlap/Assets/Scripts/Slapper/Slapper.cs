@@ -10,9 +10,6 @@ public class Slapper : MonoBehaviour {
     private Vector3 m_target;
     private bool m_isSet;
 
-    void Awake()
-    {
-    }
 	// Use this for initialization
 	void Start () {
         
