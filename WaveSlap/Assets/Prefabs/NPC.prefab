@@ -114,7 +114,7 @@ GameObject:
   - 114: {fileID: 114000011309985460}
   m_Layer: 8
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,9 +304,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  stepsToHappiness: 5
-  currentStepToHappiness: 0
+  maxHappiness: 3
+  minHappiness: 1
+  currentHappiness: 1
   happyCounter: {fileID: 212000013510170372}
+  em: {fileID: 114000010703040306, guid: 6185c884041de594b9a8a3e15336360a, type: 2}
 --- !u!114 &114000011423882976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,12 +323,11 @@ MonoBehaviour:
   isPlayer: 0
   numWaves: 3
   chooseRandomWaveDelay: {x: 1, y: 5}
-  waveBoxes:
-  - {fileID: 1000011667061030}
-  - {fileID: 1000010116380526}
-  - {fileID: 1000010644029424}
-  activeGameBox: {fileID: 0}
+  areaWaveRadius: 0
   currWave: 0
+  waveState: 0
+  coolDownDuration: 0
+  coolDownTimer: 0
 --- !u!114 &114000011990645174
 MonoBehaviour:
   m_ObjectHideFlags: 1
