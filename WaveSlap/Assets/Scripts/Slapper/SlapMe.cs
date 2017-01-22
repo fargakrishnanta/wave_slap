@@ -44,7 +44,7 @@ public class SlapMe : MonoBehaviour {
         {
             if (CheckInBoundary(hit.collider.gameObject.transform.position))
             {
-                if (hit.collider.gameObject.name == "Waver")
+                if (hit.collider.gameObject.tag == "Player")
                 {
                     SlapMePlease(true);
                 }else
