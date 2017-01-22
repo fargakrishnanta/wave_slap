@@ -5,6 +5,7 @@ using System.Collections.Generic;
 //Note.. How unfortunate, this code will look quite messy..
 [System.Serializable]
 public class GOAnimation {
+    public string name;
     public List<GameObject> objectsToAnimate;
 
     public float timeToComplete;
@@ -33,12 +34,12 @@ public class GOAnimation {
                 break;
             case AnimationType.Appear:
                 foreach (GameObject obj in objectsToAnimate) {
-                    obj.SetActive(false);
+                    //obj.SetActive(false);
                 }
                 break;
             case AnimationType.Disappear:
                 foreach (GameObject obj in objectsToAnimate) {
-                    obj.SetActive(true);
+                    //obj.SetActive(true);
                 }
                 break;
             default:
@@ -67,7 +68,7 @@ public class GOAnimation {
                 case AnimationType.Disappear:
                     //STRETCH add fade
                     foreach (GameObject obj in objectsToAnimate) {
-                        obj.SetActive(true);
+                        obj.SetActive(false);
                     }
                     break;
                 default:
