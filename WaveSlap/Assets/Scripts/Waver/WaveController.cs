@@ -15,6 +15,8 @@ public class WaveController : MonoBehaviour {
 
     public int currWave;
 
+    public PersonAudio personAudio;
+
 	/// <summary>
     /// Use this state info to reduce amount of calls
     /// </summary>
@@ -49,6 +51,8 @@ public class WaveController : MonoBehaviour {
         coolDownTimer = coolDownDuration;
 
         waveState = WaveState.Ready;
+
+        personAudio = GetComponent<PersonAudio>();
 	}
 
     // Update is called once per frame
@@ -76,7 +80,7 @@ public class WaveController : MonoBehaviour {
 
 	void TriggerAreaWave() {
         if (!animator.GetBool("Wave2")) {
-            GetComponent<AudioSource>().Play();
+            personAudio.PlaySound("AreaWave");
 
             Collider2D[] collided = Physics2D.OverlapCircleAll(transform.position, areaWaveRadius);
 
@@ -125,6 +129,7 @@ public class WaveController : MonoBehaviour {
 
     //Returns the transform of one object that is detected when you do a single wave
     Transform SingleWave() {
+        personAudio.PlaySound("SingleWave");
         LayerMask targetLayer = LayerMask.GetMask("Person");
 
         //Default right
