@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MainMenuScript : MonoBehaviour {
@@ -37,5 +38,11 @@ public class MainMenuScript : MonoBehaviour {
         }
 
         return false;
+    }
+
+    public void OnClickStart()
+    {
+        SceneManager.LoadScene(1);
+        
     }
 }
