@@ -99,15 +99,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010197671194, guid: 1039c1074811c324fa789d976a82db79, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.57
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000010197671194, guid: 1039c1074811c324fa789d976a82db79, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.31
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000010197671194, guid: 1039c1074811c324fa789d976a82db79, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -3.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000010197671194, guid: 1039c1074811c324fa789d976a82db79, type: 2}
       propertyPath: m_LocalRotation.x
@@ -204,7 +204,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: ac5ae8aad15a1bc4fa3016a616cda164, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8834838133248e84ca26825567d33919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxTimer: 5
+  MaxTimer: 2
   gm: {fileID: 114000011925703242, guid: 571b255f0394b424c93a54050d7114e5, type: 2}
 --- !u!4 &490835701
 Transform:
@@ -307,8 +307,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1944959555
-  m_SortingOrder: -1
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 57285131296edd64498043070959941e, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -426,7 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationList:
-  - objectsToAnimate:
+  - name: 
+    objectsToAnimate:
     - {fileID: 1835748297}
     timeToComplete: 0.5
     animationDelay: 0
@@ -434,7 +435,8 @@ MonoBehaviour:
     isComplete: 0
     translateStartPoint: {x: -18.44, y: 11.09, z: 0.29}
     translateEndPoint: {x: 0.95, y: -2.28, z: 0.29}
-  - objectsToAnimate:
+  - name: 
+    objectsToAnimate:
     - {fileID: 781476688}
     timeToComplete: 0.5
     animationDelay: 0.5
@@ -442,7 +444,8 @@ MonoBehaviour:
     isComplete: 0
     translateStartPoint: {x: 13.26, y: 15.66, z: 0.29}
     translateEndPoint: {x: 0.95, y: -2.28, z: 0.29}
-  - objectsToAnimate:
+  - name: 
+    objectsToAnimate:
     - {fileID: 1970846597}
     timeToComplete: 0
     animationDelay: 0.5
@@ -450,7 +453,8 @@ MonoBehaviour:
     isComplete: 0
     translateStartPoint: {x: 13.26, y: 15.66, z: 0.29}
     translateEndPoint: {x: 0.95, y: -2.28, z: 0.29}
-  - objectsToAnimate:
+  - name: 
+    objectsToAnimate:
     - {fileID: 368404260}
     timeToComplete: 0
     animationDelay: 1
@@ -503,8 +507,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1944959555
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: fa48f56f599c4ac4db06ef4b746f34fd, type: 3}
   m_Color: {r: 0.29065743, g: 0.88734037, b: 0.9411765, a: 1}
   m_FlipX: 0
@@ -566,7 +570,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: e9c304bef0d35ee478c139b0e2211323, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
