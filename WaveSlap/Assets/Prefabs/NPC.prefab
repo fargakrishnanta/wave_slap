@@ -304,9 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxHappiness: 2
-  minHappiness: 0
-  currentHappiness: 0
+  maxHappiness: 3
+  minHappiness: 1
+  currentHappiness: 1
   happyCounter: {fileID: 212000013510170372}
   em: {fileID: 0}
 --- !u!114 &114000011423882976

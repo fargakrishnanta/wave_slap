@@ -18,7 +18,7 @@ public class HappyController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        em = GameObject.Find("EventManager").GetComponent<EventManager>();
 	}
 	
 	// Update is called once per frame
