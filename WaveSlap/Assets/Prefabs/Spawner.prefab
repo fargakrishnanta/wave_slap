@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfNPC: 0
   maxNumOfNPC: 40
-  numOfNPCAtStart: 20
+  numOfNPCAtStart: 15
   numOfSpawnAtOnce: 1
   maxNumOfSpawnAtOnce: 4
   minX: -8

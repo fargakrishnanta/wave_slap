@@ -64,6 +64,7 @@ MonoBehaviour:
   musicSpeedScale: 0
   animSpeedScale: 1
   colorLense: {r: 0, g: 0, b: 0, a: 0}
+  colorScaleFunctionType: 1
   em: {fileID: 0}
 --- !u!114 &114000012479873234
 MonoBehaviour:
