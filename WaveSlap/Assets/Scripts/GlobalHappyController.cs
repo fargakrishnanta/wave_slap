@@ -4,24 +4,55 @@ using System.Collections.Generic;
 
 public class GlobalHappyController : MonoBehaviour {
 
+    public float maxHappinessLevels = 3.0f;
+
+    public float animSpeedCoeffecient = 1.8f;
+    public float musicSpeedCoeffecient = 1.8f;
+
     public int numOfNPC;
-    public List<HappyController> NPCList;
-    public HappyController currentHappyController;
+    public List<GameObject> NPCList;
+
+    SpriteRenderer spriteRenderer;
 
     public float GlobalHappyScore;
     public float maxHappinessPerNPC = 3f;
 
     public float colorScale;
     public float musicSpeedScale;//how fast the music play based on GlobalHappyScore
-    public float animSpeed = 1f;//animation speed based on GlobalHappyScore
+    public float animSpeedScale = 1f;//animation speed based on GlobalHappyScore
+
+    public Color colorLense = new Color(0.3f, 0.3f, 0.3f);
+
+    //Event
+    public EventManager em;//MUST BE SET IN INSPECTOR
 
     // Use this for initialization
     void Start () {
-        NPCList = new List<HappyController>();
-        currentHappyController = new HappyController();
+        NPCList = new List<GameObject>();//list of all NPC's game objects
 
+        colorLense = new Color(1f, 1f, 1f);
 
+        //EVENTS
+        em.HappinessIncreased += GHC_HappinessIncreased;
+        em.HappinessDecreased += GHC_HappinessDecreased;
+
+        findAllNPC();
     }
+    private void GHC_HappinessIncreased(object sender, NPCEventArgs e)
+    {
+        //Debug.Log("received message from GHC_HappinessIncreased");
+        calcGlobalHappyScore();
+    }
+    private void GHC_HappinessDecreased(object sender, NPCEventArgs e)
+    {
+        //Debug.Log("received message from GHC_HappinessDecreased");
+        calcGlobalHappyScore();
+    }
+
+    // Update is called once per frame
+    void Update () {
+	
+	}
 
     public void findAllNPC()
     {
@@ -45,37 +76,91 @@ public class GlobalHappyController : MonoBehaviour {
         foreach (GameObject obj in objects)
         {
             //Obtain each NPC's HappyController
-            currentHappyController = obj.GetComponent<HappyController>();
+            //currentHappyController = obj.GetComponent<HappyController>();
+
             //Add that NPC's HappyController to the list of all HappyControllers
-            NPCList.Add(currentHappyController);
+            //NPCList.Add(currentHappyController);
+            NPCList.Add(obj);
         }
 
         //Update numOfNPC's
         numOfNPC = NPCList.Count;
     }
-
-    public void calcGlobalHappyScore()
-    {
-
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public void addNPC(HappyController NPC)
+    public void addNPC(GameObject NPC)
     {
         NPCList.Add(NPC);
         numOfNPC = NPCList.Count;//Update numOfNPC's
+
+        calcGlobalHappyScore();
     }
-    void updateAnimSpeed()
+
+    public void applyColorScale()
     {
-        animSpeed = GlobalHappyScore / ((float)numOfNPC / maxHappinessPerNPC);
+        foreach (GameObject curGameObject in NPCList)
+        {
+            spriteRenderer = curGameObject.GetComponent<SpriteRenderer>();
+            //spriteRenderer.color = new Color(1f, 0, 0);
+            spriteRenderer.color = colorLense;
+        }
+        //Debug.Log("ColorScale = " + colorScale);
+    }
+    public void applyAnimSpeedScale()
+    {
+
+    }
+    public void applyMusicSpeedScale()
+    {
+
+    }
+
+    //@@@@@@@@@@@@@@@@@@@@@@@@
+    //@@@@@ CALCULATIONS @@@@@
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    public void calcGlobalHappyScore()
+    {
+        int totalHappyScore = 0;
+        foreach (GameObject curGameObject in NPCList)
+        {
+            totalHappyScore += curGameObject.GetComponent<HappyController>().currentHappiness;
+        }
+
+        numOfNPC = NPCList.Count;
+
+        //Global Happy Score is represented from 0 to 1
+        //where 0 is everyone is at 0 happiness (not possible)
+        //lowest possible is 0.333
+        //and 1 is everyone is at 3 happiness
+        GlobalHappyScore = ((float)totalHappyScore) / maxHappinessLevels;
+        GlobalHappyScore = GlobalHappyScore / ((float)numOfNPC);
+
+        //update the 
+        //musicSpeedScale
+        updateMusicSpeed();
+        //colorScale
+        updateColorScale();
+        //animSpeedScale
+        updateanimSpeedScale();
+
+        //apply scales
+        applyColorScale();
+        applyAnimSpeedScale();
+        applyMusicSpeedScale();
+    }
+    void updateanimSpeedScale()
+    {
+        animSpeedScale = GlobalHappyScore * 1.8f;
     }
     void updateMusicSpeed()
     {
-        musicSpeedScale = GlobalHappyScore / ((float)numOfNPC / maxHappinessPerNPC);
+        musicSpeedScale = GlobalHappyScore * 1.8f;
     }
+    void updateColorScale()
+    {
+        //HAS TO BE BETWEEN 0 AND 1
+        colorScale = GlobalHappyScore;
+
+        colorLense = new Color(colorScale, colorScale, colorScale);
+    }
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 }
