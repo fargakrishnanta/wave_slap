@@ -113,6 +113,7 @@ GameObject:
   - 61: {fileID: 61000013529498806}
   - 114: {fileID: 114000011309985460}
   - 82: {fileID: 82000013505599772}
+  - 114: {fileID: 114000011789003406}
   m_Layer: 8
   m_Name: NPC
   m_TagString: NPC
@@ -399,12 +400,32 @@ MonoBehaviour:
   numWaves: 3
   chooseRandomWaveDelay: {x: 2, y: 5}
   currWave: 0
+  personAudio: {fileID: 0}
   waveState: 0
+  isStop: 0
   coolDownDuration: 0
   coolDownTimer: 0
   areaWaveRadius: 2
   singleWaveRange: 1
   singeWaveRadius: 1
+--- !u!114 &114000011789003406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013616571796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9854ab421466140a829b89dd067da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFiles:
+  - {fileID: 8300000, guid: fa46b820971bbd54fa46ce9889e734e2, type: 3}
+  - {fileID: 8300000, guid: fa46b820971bbd54fa46ce9889e734e2, type: 3}
+  audioKeys:
+  - SingleWave
+  - AreaWave
+  audioSource: {fileID: 0}
 --- !u!114 &114000011990645174
 MonoBehaviour:
   m_ObjectHideFlags: 1

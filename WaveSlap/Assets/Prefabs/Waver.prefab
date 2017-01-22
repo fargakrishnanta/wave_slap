@@ -27,6 +27,7 @@ GameObject:
   - 61: {fileID: 61000013728800704}
   - 114: {fileID: 114000012871139112}
   - 82: {fileID: 82000012450988468}
+  - 114: {fileID: 114000013240844916}
   m_Layer: 8
   m_Name: Waver
   m_TagString: Player
@@ -228,7 +229,9 @@ MonoBehaviour:
   numWaves: 3
   chooseRandomWaveDelay: {x: 0, y: 0}
   currWave: 0
+  personAudio: {fileID: 0}
   waveState: 0
+  isStop: 0
   coolDownDuration: 2
   coolDownTimer: 0
   areaWaveRadius: 2
@@ -251,6 +254,24 @@ MonoBehaviour:
   currentHappiness: 1
   happyCounter: {fileID: 212000011007456546}
   em: {fileID: 114000010703040306, guid: 6185c884041de594b9a8a3e15336360a, type: 2}
+--- !u!114 &114000013240844916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012344649026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9854ab421466140a829b89dd067da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFiles:
+  - {fileID: 8300000, guid: fa46b820971bbd54fa46ce9889e734e2, type: 3}
+  - {fileID: 8300000, guid: fa46b820971bbd54fa46ce9889e734e2, type: 3}
+  audioKeys:
+  - SingleWave
+  - AreaWave
+  audioSource: {fileID: 0}
 --- !u!212 &212000011007456546
 SpriteRenderer:
   m_ObjectHideFlags: 1
