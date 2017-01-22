@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SlapMe : MonoBehaviour {
@@ -14,11 +15,26 @@ public class SlapMe : MonoBehaviour {
 
     public GameObject timerClass;
     public GameObject heartbutton;
+    public GameObject gameManager;
 
     public bool InGame = true;
+
+    public Image OneDot;
+    public Image TwoDot;
+    public Image ThreeDot;
+
+    [SerializeField]
+    private AudioClip m_slapSound;
+    [SerializeField]
+    private AudioClip m_successSound;
+    [SerializeField]
+    private AudioClip m_failSound;
+
+    private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
-	
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -31,9 +47,16 @@ public class SlapMe : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.Alpha4))
         {
+            if (MaxSlapCount == 0)
+            {
+                gameManager.GetComponent<GameManager>().GameOver();
+                return;
+            }
+                
             WrongSlapPanel.SetActive(false);
             timerClass.GetComponent<CountdownTimer>().Resume();
             EnableStuff();
+           
         }
 	}
 
@@ -79,21 +102,60 @@ public class SlapMe : MonoBehaviour {
         {
             MaxSlapCount--;
            
+            if(m_slapSound) {
+                audioSource.clip = m_slapSound;
+                audioSource.Play();
+            }
+
             if (a)
             {
                 RightSlapPanel.SetActive(true);
                 heartbutton.SetActive(true);
                 DisableStuff();
-                
+
+                if (m_successSound) {
+                    audioSource.clip = m_successSound;
+                    audioSource.Play();
+                }
+
             }
             else
             {
                 WrongSlapPanel.SetActive(true);
-               
+
+                if (m_failSound) {
+                    audioSource.clip = m_failSound;
+                    audioSource.Play();
+                }
+
+
                 DisableStuff();
             }
-                
+        }
 
+        switch (MaxSlapCount)
+        {
+            case 3:
+                OneDot.enabled = true;
+                TwoDot.enabled = true;
+                ThreeDot.enabled = true;
+                break;
+            case 2:
+                OneDot.enabled = true;
+                TwoDot.enabled = true;
+                ThreeDot.enabled = false;
+                break;
+            case 1:
+                OneDot.enabled = true;
+                TwoDot.enabled = false;
+                ThreeDot.enabled = false;
+                break;
+            default:
+                OneDot.enabled = false;
+                TwoDot.enabled = false;
+                ThreeDot.enabled = false;
+               
+                break;
         }
     }
 

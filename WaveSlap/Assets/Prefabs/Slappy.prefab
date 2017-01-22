@@ -26,6 +26,7 @@ GameObject:
   - 114: {fileID: 114000010095954302}
   - 114: {fileID: 114000012304928662}
   - 95: {fileID: 95000010359172724}
+  - 82: {fileID: 82000011738418292}
   m_Layer: 10
   m_Name: Slappy
   m_TagString: Untagged
@@ -59,10 +60,10 @@ Rigidbody2D:
   m_AngularDrag: 0
   m_GravityScale: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61000013922470278
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -77,6 +78,80 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
+--- !u!82 &82000011738418292
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011731652076}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95000010359172724
 Animator:
   serializedVersion: 3
@@ -109,6 +184,8 @@ MonoBehaviour:
   DashSpeed: 10
   MaxDuration: 0.2
   CoolDown: 1
+  m_DashVisualFeedback: {fileID: 1000013802941246, guid: dddf6fb8694401e488730973479369d9,
+    type: 2}
 --- !u!114 &114000012304928662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,9 +198,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boundary: 2
-  MaxSlapCount: 2
+  MaxSlapCount: 3
   RightSlapPanel: {fileID: 0}
   WrongSlapPanel: {fileID: 0}
+  timerClass: {fileID: 0}
+  heartbutton: {fileID: 0}
+  gameManager: {fileID: 1000010585535486, guid: 571b255f0394b424c93a54050d7114e5,
+    type: 2}
+  InGame: 1
+  OneDot: {fileID: 0}
+  TwoDot: {fileID: 0}
+  ThreeDot: {fileID: 0}
+  m_slapSound: {fileID: 0}
+  m_successSound: {fileID: 0}
+  m_failSound: {fileID: 0}
 --- !u!114 &114000013792892444
 MonoBehaviour:
   m_ObjectHideFlags: 1
