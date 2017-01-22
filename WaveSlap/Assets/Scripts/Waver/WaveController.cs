@@ -17,6 +17,8 @@ public class WaveController : MonoBehaviour {
 
     public PersonAudio personAudio;
 
+    public float areaWaveDelay;
+
 	/// <summary>
     /// Use this state info to reduce amount of calls
     /// </summary>
@@ -79,6 +81,8 @@ public class WaveController : MonoBehaviour {
         }
     }
 
+    bool isAreaWaved;
+
 	void TriggerAreaWave() {
         if (!animator.GetBool("Wave2")) {
             personAudio.PlaySound("AreaWave");
@@ -90,7 +94,10 @@ public class WaveController : MonoBehaviour {
             //set them to do the area wave
             animator.SetTrigger("Wave2");
 
-            if (isPlayer) MakeOthershappy(collided);
+
+            if (isPlayer) {
+                MakeOthershappy(collided);
+            }
 
             foreach(Collider2D coll in collided) {
                 WaveController waveController = coll.gameObject.GetComponent<WaveController>();
@@ -99,6 +106,12 @@ public class WaveController : MonoBehaviour {
                 }
             }
         }
+    }
+
+    IEnumerator PlayDelayed(float delay) {
+        yield return new WaitForSeconds(delay);
+
+        //animator.SetTrigger("Wave2");
     }
 
     IEnumerator TimedTriggerSingleWave() {

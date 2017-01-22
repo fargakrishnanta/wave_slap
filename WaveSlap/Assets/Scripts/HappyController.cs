@@ -15,6 +15,7 @@ public class HappyController : MonoBehaviour {
     //Event Manager
     public EventManager em;//MUST BE SET IN INSPECTOR
 
+    public float delayDeath;
 
     // Use this for initialization
     void Start () {
@@ -35,7 +36,13 @@ public class HappyController : MonoBehaviour {
         {
             DecreaseHappiness();
         }
+
+
+
     }
+
+    
+
 
     public void IncreaseHappiness() {
         if (currentHappiness < maxHappiness) currentHappiness++;
@@ -46,7 +53,18 @@ public class HappyController : MonoBehaviour {
         //This in turn lets the GlobalHappinessController know 
         //that someone's happiness has increased, prompting it to
         //recalculate the total happiness
+
+        if (!isPlayer && currentHappiness >= maxHappiness) {
+           // StartCoroutine(Death(delayDeath));
+            
+        }
+
         em.EM_HappinessIncreased();
+    }
+
+    IEnumerator Death(float delay) {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
     public void IncreaseHappiness(int delta) {
