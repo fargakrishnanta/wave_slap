@@ -22,6 +22,8 @@ GameObject:
   - 114: {fileID: 114000010782751494}
   - 114: {fileID: 114000012479873234}
   - 114: {fileID: 114000013394218300}
+  - 114: {fileID: 114000010551748814}
+  - 82: {fileID: 82000012651593210}
   m_Layer: 0
   m_Name: GlobalHappinessController
   m_TagString: Untagged
@@ -42,6 +44,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &82000012651593210
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012633663006}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9da72a14033332c45a7583adc2b38623, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &114000010551748814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012633663006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 215bdce480414354a9440d34fa6a2b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFiles:
+  - {fileID: 8300000, guid: 9da72a14033332c45a7583adc2b38623, type: 3}
+  - {fileID: 8300000, guid: 373ec74ba0662af47b62b843c191cf47, type: 3}
+  - {fileID: 8300000, guid: 20ad94d4bd0e1e445bb5139c01f7044c, type: 3}
+  audioKeys:
+  - level1
+  - level2
+  - level3
+  audioSource: {fileID: 0}
 --- !u!114 &114000010782751494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,16 +151,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHappinessLevels: 3
   animSpeedCoeffecient: 1.8
-  musicSpeedCoeffecient: 1.8
+  musicLevelMinThreshold: 0.57
+  musicLevelMaxThreshold: 0.85
   numOfNPC: 0
   NPCList: []
   GlobalHappyScore: 0
   maxHappinessPerNPC: 3
+  backGroundIMG_Sad: {fileID: 0}
+  backgroundAudio: {fileID: 0}
+  darkestFloat: 0
   colorScale: 0
-  musicSpeedScale: 0
+  backgroundColorScale: 0
+  musicLevelCounter: 0
   animSpeedScale: 1
   colorLense: {r: 0, g: 0, b: 0, a: 0}
   colorScaleFunctionType: 0
+  m_happyBar: {fileID: 0}
+  m_minBarPosX: 0
   em: {fileID: 0}
 --- !u!114 &114000012479873234
 MonoBehaviour:
