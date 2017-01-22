@@ -32,6 +32,8 @@ public class GlobalHappyController : MonoBehaviour {
 
         colorLense = new Color(0.333f, 0.333f, 0.333f);
 
+        em = GameObject.Find("EventManager").GetComponent<EventManager>();
+
         //EVENTS
         em.HappinessIncreased += GHC_HappinessIncreased;
         em.HappinessDecreased += GHC_HappinessDecreased;
