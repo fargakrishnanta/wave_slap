@@ -235,6 +235,10 @@ public class GlobalHappyController : MonoBehaviour {
         GlobalHappyScore = ((float)totalHappyScore) / maxHappinessLevels;
         GlobalHappyScore = GlobalHappyScore / ((float)numOfNPC);
 
+        if(totalHappyScore >= maxHappinessLevels * numOfNPC) {
+            Debug.Log("Waver Wins");
+        }
+
         //update the 
         //musicSpeedScale
         updateMusicSpeed();
