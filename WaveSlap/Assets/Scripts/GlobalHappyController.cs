@@ -21,7 +21,7 @@ public class GlobalHappyController : MonoBehaviour {
     public float musicSpeedScale;//how fast the music play based on GlobalHappyScore
     public float animSpeedScale = 1f;//animation speed based on GlobalHappyScore
 
-    public Color colorLense = new Color(0.3f, 0.3f, 0.3f);
+    public Color colorLense = new Color(0.333f, 0.333f, 0.333f);
 
     //Event
     public EventManager em;//MUST BE SET IN INSPECTOR
@@ -30,14 +30,18 @@ public class GlobalHappyController : MonoBehaviour {
     void Start () {
         NPCList = new List<GameObject>();//list of all NPC's game objects
 
-        colorLense = new Color(1f, 1f, 1f);
+        colorLense = new Color(0.333f, 0.333f, 0.333f);
 
         //EVENTS
         em.HappinessIncreased += GHC_HappinessIncreased;
         em.HappinessDecreased += GHC_HappinessDecreased;
 
+        //Initially add Waver (Player 1) to the NPC List
+        addNPC_byTag("Player", false);
         findAllNPC();
+        applyColorScale();
     }
+
     private void GHC_HappinessIncreased(object sender, NPCEventArgs e)
     {
         //Debug.Log("received message from GHC_HappinessIncreased");
@@ -75,11 +79,7 @@ public class GlobalHappyController : MonoBehaviour {
         //iterate through all those NPC objects
         foreach (GameObject obj in objects)
         {
-            //Obtain each NPC's HappyController
-            //currentHappyController = obj.GetComponent<HappyController>();
-
-            //Add that NPC's HappyController to the list of all HappyControllers
-            //NPCList.Add(currentHappyController);
+            //Add all NPC tagged game objects to our NPCList
             NPCList.Add(obj);
         }
 
@@ -93,16 +93,24 @@ public class GlobalHappyController : MonoBehaviour {
 
         calcGlobalHappyScore();
     }
+    public void addNPC_byTag(string tag, bool reCalcStats)
+    {
+        GameObject gameObject = GameObject.FindGameObjectWithTag(tag);
+        NPCList.Add(gameObject);
+
+        if (reCalcStats)
+        {
+            calcGlobalHappyScore();
+        }
+    }
 
     public void applyColorScale()
     {
         foreach (GameObject curGameObject in NPCList)
         {
             spriteRenderer = curGameObject.GetComponent<SpriteRenderer>();
-            //spriteRenderer.color = new Color(1f, 0, 0);
             spriteRenderer.color = colorLense;
         }
-        //Debug.Log("ColorScale = " + colorScale);
     }
     public void applyAnimSpeedScale()
     {
@@ -118,6 +126,8 @@ public class GlobalHappyController : MonoBehaviour {
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     public void calcGlobalHappyScore()
     {
+        //Iterate through all game objects in our NPCList
+        //sum all of their HappyController component's currentHappiness amounts
         int totalHappyScore = 0;
         foreach (GameObject curGameObject in NPCList)
         {
@@ -148,11 +158,11 @@ public class GlobalHappyController : MonoBehaviour {
     }
     void updateanimSpeedScale()
     {
-        animSpeedScale = GlobalHappyScore * 1.8f;
+        animSpeedScale = GlobalHappyScore * animSpeedCoeffecient;
     }
     void updateMusicSpeed()
     {
-        musicSpeedScale = GlobalHappyScore * 1.8f;
+        musicSpeedScale = GlobalHappyScore * musicSpeedCoeffecient;
     }
     void updateColorScale()
     {
@@ -160,6 +170,8 @@ public class GlobalHappyController : MonoBehaviour {
         colorScale = GlobalHappyScore;
 
         colorLense = new Color(colorScale, colorScale, colorScale);
+
+        //Debug.Log("ColorScale = " + colorScale);
     }
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
