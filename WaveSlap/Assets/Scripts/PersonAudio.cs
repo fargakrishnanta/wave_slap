@@ -26,7 +26,6 @@ public class PersonAudio : MonoBehaviour {
 	}
 
     public void PlaySound(string key) {
-        audioSource.clip = audioFiles[audioKeys.IndexOf(key)];
-        audioSource.Play();
+        audioSource.PlayOneShot(audioFiles[audioKeys.IndexOf(key)]);
     }
 }
