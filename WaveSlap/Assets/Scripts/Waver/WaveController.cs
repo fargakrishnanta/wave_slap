@@ -71,7 +71,8 @@ public class WaveController : MonoBehaviour {
         else {
             if (isPlayer) {
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                GetComponent<WaverMovement>().enabled = false;
+                //WHAT THE FUCK.
+                GetComponent<WaverMovement>().enabled = true;
             }
             else {
                 GetComponent<NPCMovementControl>().Stop();

@@ -102,6 +102,7 @@ public class SlapMe : MonoBehaviour {
         InGame = false;
         this.gameObject.GetComponent<Slapper>().enabled = false;
         this.gameObject.GetComponent<SlappyDash>().enabled = false;
+
         GameObject.FindGameObjectWithTag("Player").GetComponent<WaverMovement>().enabled = false;
         GameObject.FindGameObjectWithTag("Player").GetComponent<WaveController>().enabled = false;
 
