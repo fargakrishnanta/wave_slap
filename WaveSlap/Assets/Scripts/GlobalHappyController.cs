@@ -432,7 +432,7 @@ public class GlobalHappyController : MonoBehaviour {
         }
 
         if(totalHappyScore >= maxHappinessLevels * numOfNPC) {
-            SceneManager.LoadScene("WaverWinScene");
+            SceneManager.LoadScene("BigWaverWinScene");
         }
 
         //update the 
