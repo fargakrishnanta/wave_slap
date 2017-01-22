@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneManager : MonoBehaviour {
+public class PersonAudio : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
