@@ -362,6 +362,9 @@ public class GlobalHappyController : MonoBehaviour {
         }
     }
 
+    public AudioClip levelMusic;
+    public AudioClip level2Music;
+    public AudioClip level3Music;
 
     //@@@@@@@@@@@@@@@@@@@@@@@@
     //@@@@@ CALCULATIONS @@@@@
@@ -385,16 +388,37 @@ public class GlobalHappyController : MonoBehaviour {
         GlobalHappyScore = ((float)totalHappyScore) / maxHappinessLevels;
         GlobalHappyScore = GlobalHappyScore / ((float)numOfNPC);
 
+        float fixedTotalHappyScore = totalHappyScore - numOfNPC;
+        float maxHappinessLevel = maxHappinessLevels - 1;
+        float percHappy = fixedTotalHappyScore / (maxHappinessLevel * numOfNPC);
+        AudioSource audioSource = GetComponent<AudioSource>();
+
+        if (percHappy > musicLevelMaxThreshold) {
+            if (audioSource.clip != level3Music) {
+                GetComponent<AudioSource>().clip = level3Music;
+                audioSource.Play();
+            }
+        }
+        else if (percHappy > musicLevelMinThreshold) {
+            if (audioSource.clip != level2Music) {
+                GetComponent<AudioSource>().clip = level2Music;
+                audioSource.Play();
+            }
+        }
+
         if (m_happyBar) {
             // "fixed" scores to remove the starting at 1 happiness...
-            float fixedTotalHappyScore = totalHappyScore - numOfNPC;
-            float maxHappinessLevel = maxHappinessLevels - 1;
+            fixedTotalHappyScore = totalHappyScore - numOfNPC;
+            maxHappinessLevel = maxHappinessLevels - 1;
 
 
             //Assumes 0 = full bar
             float range = Mathf.Abs(m_minBarPosX);
-            float percHappy = fixedTotalHappyScore / (maxHappinessLevel * numOfNPC);
+            percHappy = fixedTotalHappyScore / (maxHappinessLevel * numOfNPC);
             float posFromStart = range * percHappy;
+            
+
+
 
 
             float pos = m_minBarPosX + posFromStart;
@@ -412,7 +436,7 @@ public class GlobalHappyController : MonoBehaviour {
 
         //update the 
         //musicSpeedScale
-        updateMusicLevel();
+        //updateMusicLevel();
         //colorScale
         updateColorScale();
         //animSpeedScale
@@ -423,7 +447,7 @@ public class GlobalHappyController : MonoBehaviour {
         //apply scales
         applyColorScaleType();
         applyAnimSpeedScale();
-        applyMusicLevel();
+        //applyMusicLevel();
         applyBackgroundColorScale();
     }
     void updateanimSpeedScale()

@@ -21,10 +21,13 @@ public class SlappyDash : MonoBehaviour {
     [SerializeField]
     private GameObject m_DashVisualFeedback;
 
+    public AudioClip dashSound;
+    public AudioSource audioSource;
 	// Use this for initialization
 	void Start () {
         m_rb = this.gameObject.GetComponent<Rigidbody2D>();
         m_cdTimer = CoolDown;
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -39,7 +42,8 @@ public class SlappyDash : MonoBehaviour {
                     //LetsDash();
                     dashState = DashState.Dashing;
                     GameObject dash = (GameObject)Instantiate(m_DashVisualFeedback, transform.position, Quaternion.identity);
-                    
+
+                    audioSource.PlayOneShot(dashSound);
 
                     
                     dash.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
