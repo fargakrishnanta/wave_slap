@@ -138,11 +138,13 @@ MonoBehaviour:
   isPlayer: 1
   numWaves: 3
   chooseRandomWaveDelay: {x: 0, y: 0}
-  areaWaveRadius: 2
   currWave: 0
   waveState: 0
   coolDownDuration: 2
   coolDownTimer: 0
+  areaWaveRadius: 2
+  singleWaveRange: 1
+  singeWaveRadius: 1
 --- !u!114 &114000012884280654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,6 +175,7 @@ MonoBehaviour:
   minHappiness: 0
   currentHappiness: 0
   happyCounter: {fileID: 212000013043961460}
+  em: {fileID: 0}
 --- !u!212 &212000011058400256
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -202,7 +205,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 64ab417796dbd1749a7344294c53ec7e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d259c61e24475044097a929923b51dba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

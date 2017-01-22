@@ -18,7 +18,7 @@ public class HappyController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        em = GameObject.Find("EventManager").GetComponent<EventManager>();
 	}
 	
 	// Update is called once per frame
@@ -48,9 +48,34 @@ public class HappyController : MonoBehaviour {
         //recalculate the total happiness
         em.EM_HappinessIncreased();
     }
+
+    public void IncreaseHappiness(int delta) {
+        currentHappiness = Mathf.Min(currentHappiness + delta, maxHappiness);
+
+        if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);
+
+        //Call the EM_HappinessIncreased function in the Event Manager
+        //This in turn lets the GlobalHappinessController know 
+        //that someone's happiness has increased, prompting it to
+        //recalculate the total happiness
+        em.EM_HappinessIncreased();
+    }
+
     void DecreaseHappiness()
     {
         if (currentHappiness > minHappiness) currentHappiness--;
+
+        if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);
+
+        //Call the EM_HappinessDecreased function in the Event Manager
+        //This in turn lets the GlobalHappinessController know 
+        //that someone's happiness has decreased, prompting it to
+        //recalculate the total happiness
+        em.EM_HappinessDecreased();
+    }
+
+    void DecreaseHappiness(int delta) {
+        currentHappiness = Mathf.Max(currentHappiness + delta, minHappiness);
 
         if (happyCounter) happyCounter.color = new Color((float)currentHappiness / maxHappiness, (float)currentHappiness / maxHappiness, 0);
 
