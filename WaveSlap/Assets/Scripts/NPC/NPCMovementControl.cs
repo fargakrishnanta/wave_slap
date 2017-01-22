@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent (typeof(Rigidbody2D))]
-public class NPCMovementControl : MonoBehaviour {
+public class NPCMovementControl : MovementControl {
 
 
 
@@ -47,7 +47,9 @@ public class NPCMovementControl : MonoBehaviour {
         while (true) {
             
             currentDirection = availableDirections[Random.Range(0, availableDirections.Count)];
-            transform.localScale = new Vector3(currentDirection.x == 0 ? transform.localScale.x : -currentDirection.x * 0.5f, transform.localScale.y);
+
+            FlipIt(currentDirection);
+
             yield return new WaitForSeconds(Random.Range(changeDirectionDelayRange.x, changeDirectionDelayRange.y));
         }
     }

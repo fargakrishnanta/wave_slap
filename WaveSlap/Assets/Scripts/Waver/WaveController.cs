@@ -125,7 +125,7 @@ public class WaveController : MonoBehaviour {
         LayerMask targetLayer = LayerMask.GetMask("Person");
 
         //Default right
-        float xFacingDir = -transform.localScale.x / Mathf.Abs(transform.localScale.x);
+        float xFacingDir = gameObject.GetComponent<SpriteRenderer>().flipX ? 1 : -1;
 
         Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position + Vector3.right * singleWaveRange * xFacingDir, singeWaveRadius);
 
@@ -189,14 +189,11 @@ public class WaveController : MonoBehaviour {
         Transform waver = transform;
 
         Vector2 wavedToWaver = waver.position - waved.position;
-        
 
 
-        float xDir = wavedToWaver.x / Mathf.Abs(wavedToWaver.x);
+        MovementControl moveControl = waved.GetComponent<MovementControl>();
 
-        waved.localScale = new Vector3(-xDir * 0.5f, transform.localScale.y);
-
-        waved.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+        moveControl.FlipIt(wavedToWaver);
         
 
         WaveController waveController = waved.GetComponent<WaveController>();

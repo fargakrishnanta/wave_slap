@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WaverMovement : MonoBehaviour {
+public class WaverMovement : MovementControl {
 
 
     public Rigidbody2D rigidBody;
@@ -24,14 +24,6 @@ public class WaverMovement : MonoBehaviour {
         var moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rigidBody.MovePosition(rigidBody.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
         FlipIt(moveDirection);
-    }
-
-    void FlipIt(Vector2 dir)
-    {
-        if (dir.x > 0)
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        else if(dir.x < 0)
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
     }
 
 }

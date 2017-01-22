@@ -306,7 +306,7 @@ MonoBehaviour:
   isPlayer: 0
   maxHappiness: 2
   minHappiness: 0
-  currentHappiness: 2
+  currentHappiness: 0
   happyCounter: {fileID: 212000013510170372}
 --- !u!114 &114000011423882976
 MonoBehaviour:
@@ -326,7 +326,7 @@ MonoBehaviour:
   waveState: 0
   coolDownDuration: 0
   coolDownTimer: 0
-  areaWaveRadius: 0
+  areaWaveRadius: 2
   singleWaveRange: 1
   singeWaveRadius: 1
 --- !u!114 &114000011990645174
@@ -353,6 +353,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeDirectionDelayRange: {x: 1, y: 5}
   movementSpeed: 1
+  currentDirection: {x: 0, y: 0}
+  isStop: 0
 --- !u!114 &114000013741697100
 MonoBehaviour:
   m_ObjectHideFlags: 1
