@@ -90,7 +90,6 @@ public class WaveController : MonoBehaviour {
 
 	void TriggerAreaWave() {
         if (!animator.GetBool("Wave2")) {
-            audioSource.PlayOneShot(areaWaveSound);
             
 
             Collider2D[] collided = Physics2D.OverlapCircleAll(transform.position, areaWaveRadius);
@@ -207,8 +206,8 @@ public class WaveController : MonoBehaviour {
                     }
                 }
 
-                if (Input.GetButtonDown("Wave2"))
-                {
+                if (Input.GetButtonDown("Wave2")) {
+                    audioSource.PlayOneShot(areaWaveSound);
                     TriggerAreaWave();
                     waveState = WaveState.Waving;
                 }
