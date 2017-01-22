@@ -14,6 +14,8 @@ public class SlapMe : MonoBehaviour {
 
     public GameObject timerClass;
     public GameObject heartbutton;
+
+    public bool InGame = true;
 	// Use this for initialization
 	void Start () {
 	
@@ -23,7 +25,8 @@ public class SlapMe : MonoBehaviour {
 	void Update () {
         if (Input.GetMouseButtonDown(0))
         {
-            SummonDaRay();
+            if(InGame)
+                SummonDaRay();
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha4))
@@ -71,7 +74,7 @@ public class SlapMe : MonoBehaviour {
     //TODO Slapping
     void SlapMePlease(bool a)
     {
-        
+        InGame = false;
         if(MaxSlapCount > 0)
         {
             MaxSlapCount--;
@@ -96,6 +99,7 @@ public class SlapMe : MonoBehaviour {
 
     void DisableStuff()
     {
+        InGame = false;
         this.gameObject.GetComponent<Slapper>().enabled = false;
         this.gameObject.GetComponent<SlappyDash>().enabled = false;
         GameObject.FindGameObjectWithTag("Player").GetComponent<WaverMovement>().enabled = false;
@@ -117,6 +121,7 @@ public class SlapMe : MonoBehaviour {
 
     void EnableStuff()
     {
+        InGame = true;
         this.gameObject.GetComponent<Slapper>().enabled = true;
         this.gameObject.GetComponent<SlappyDash>().enabled = true;
 
