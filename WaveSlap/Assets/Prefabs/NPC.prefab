@@ -304,11 +304,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxHappiness: 3
-  minHappiness: 1
-  currentHappiness: 1
+  maxHappiness: 2
+  minHappiness: 0
+  currentHappiness: 0
   happyCounter: {fileID: 212000013510170372}
-  em: {fileID: 114000010703040306, guid: 6185c884041de594b9a8a3e15336360a, type: 2}
+  em: {fileID: 0}
 --- !u!114 &114000011423882976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,12 +322,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   numWaves: 3
-  chooseRandomWaveDelay: {x: 1, y: 5}
-  areaWaveRadius: 0
+  chooseRandomWaveDelay: {x: 2, y: 5}
   currWave: 0
   waveState: 0
   coolDownDuration: 0
   coolDownTimer: 0
+  areaWaveRadius: 2
+  singleWaveRange: 1
+  singeWaveRadius: 1
 --- !u!114 &114000011990645174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -352,6 +354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeDirectionDelayRange: {x: 1, y: 5}
   movementSpeed: 1
+  currentDirection: {x: 0, y: 0}
+  isStop: 0
 --- !u!114 &114000013741697100
 MonoBehaviour:
   m_ObjectHideFlags: 1

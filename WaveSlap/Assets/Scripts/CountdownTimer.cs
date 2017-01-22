@@ -127,6 +127,6 @@ public class CountdownTimer : MonoBehaviour {
 
     void GameOver()
     {
-        Debug.Log("GAMEOVER");
+        //Debug.Log("GAMEOVER");
     }
 }
