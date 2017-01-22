@@ -15,6 +15,7 @@ public class SlapMe : MonoBehaviour {
 
     public GameObject timerClass;
     public GameObject heartbutton;
+    public GameObject gameManager;
 
     public bool InGame = true;
 
@@ -37,9 +38,16 @@ public class SlapMe : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.Alpha4))
         {
+            if (MaxSlapCount == 0)
+            {
+                gameManager.GetComponent<GameManager>().GameOver();
+                return;
+            }
+                
             WrongSlapPanel.SetActive(false);
             timerClass.GetComponent<CountdownTimer>().Resume();
             EnableStuff();
+           
         }
 	}
 
@@ -121,6 +129,7 @@ public class SlapMe : MonoBehaviour {
                 OneDot.enabled = false;
                 TwoDot.enabled = false;
                 ThreeDot.enabled = false;
+               
                 break;
         }
     }
