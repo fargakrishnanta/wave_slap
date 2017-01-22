@@ -65,6 +65,7 @@ public class WaveController : MonoBehaviour {
         }
         else {
             if (isPlayer) {
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 GetComponent<WaverMovement>().enabled = false;
             }
             else {
@@ -97,7 +98,7 @@ public class WaveController : MonoBehaviour {
         while (true) {
             yield return new WaitForSeconds(Random.Range(chooseRandomWaveDelay.x, chooseRandomWaveDelay.y));
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-                animator.SetTrigger("Wave2");
+                animator.SetTrigger("Wave1");
                 Transform target = SingleWave();
                 
                 if (target) {
@@ -151,6 +152,15 @@ public class WaveController : MonoBehaviour {
 
                 if (Input.GetButtonDown("Wave1")) {
                     animator.SetTrigger("Wave1");
+                    Transform target = SingleWave();
+
+                    if (target) {
+                        SingleWaveback(target);
+                        HappyController happyController = target.GetComponent<HappyController>();
+                        if (happyController) {
+                            happyController.IncreaseHappiness(2);
+                        }
+                    }
                 }
 
                 if (Input.GetButtonDown("Wave2"))
@@ -202,7 +212,7 @@ public class WaveController : MonoBehaviour {
             //Force out of their animation
             waveController.animator.SetTrigger("Idle");
             //Wave 
-            waveController.animator.SetTrigger("Wave2");
+            waveController.animator.SetTrigger("Wave1");
 
             //Reset Coroutine
             if (!waveController.isPlayer) {

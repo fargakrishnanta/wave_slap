@@ -22,7 +22,8 @@ public class WaverMovement : MovementControl {
 	void FixedUpdate () {
 
         var moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rigidBody.MovePosition(rigidBody.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        //rigidBody.MovePosition(rigidBody.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        rigidBody.velocity = moveDirection.normalized * moveSpeed;
         FlipIt(moveDirection);
     }
 

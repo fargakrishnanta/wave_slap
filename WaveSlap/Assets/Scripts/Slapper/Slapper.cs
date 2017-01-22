@@ -2,13 +2,16 @@
 
 using System.Collections;
 
-public class Slapper : MonoBehaviour {
+public class Slapper : MovementControl {
 
     private GameObject Slappy;
     private Rigidbody2D m_rb;
+    [SerializeField]
     private float m_speed = 1;
     private Vector3 m_target;
     private bool m_isSet;
+
+    private Animator animator;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +21,8 @@ public class Slapper : MonoBehaviour {
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.lockState = CursorLockMode.None;
-     
+
+        animator = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -37,5 +41,16 @@ public class Slapper : MonoBehaviour {
         //move it! :)
         transform.position = Vector3.MoveTowards(transform.position, m_target, m_speed * Time.fixedDeltaTime);
 
+        Vector3 deltaVel = (m_target - transform.position);
+
+
+        FlipIt(deltaVel);
+
+        if(deltaVel.magnitude > 0.001f) {
+            animator.SetBool("Moving", true);
+        }
+        else {
+            animator.SetBool("Moving", false);
+        }
     }
 }

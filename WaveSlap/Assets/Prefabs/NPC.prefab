@@ -304,9 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxHappiness: 2
-  minHappiness: 0
-  currentHappiness: 0
+  maxHappiness: 3
+  minHappiness: 1
+  currentHappiness: 1
   happyCounter: {fileID: 212000013510170372}
   em: {fileID: 0}
 --- !u!114 &114000011423882976
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeDirectionDelayRange: {x: 1, y: 5}
-  movementSpeed: 1
+  movementSpeed: 2
   currentDirection: {x: 0, y: 0}
   isStop: 0
 --- !u!114 &114000013741697100
@@ -473,7 +473,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 64ab417796dbd1749a7344294c53ec7e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d259c61e24475044097a929923b51dba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

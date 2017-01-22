@@ -35,6 +35,8 @@ public class SlappyDash : MonoBehaviour {
                 {
                     //LetsDash();
                     dashState = DashState.Dashing;
+
+                    //spawnParticles
                 }
                 break;
             //Lets Dash Baby!
