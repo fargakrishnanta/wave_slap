@@ -17,8 +17,11 @@ public class GlobalHappyController : MonoBehaviour {
     public float GlobalHappyScore;
     public float maxHappinessPerNPC = 3f;
 
+    public GameObject backGroundIMG_Sad;
+
     public float darkestFloat;//default 0.333f
     public float colorScale;
+    public float backgroundColorScale;
     public float musicSpeedScale;//how fast the music play based on GlobalHappyScore
     public float animSpeedScale = 1f;//animation speed based on GlobalHappyScore
 
@@ -50,6 +53,8 @@ public class GlobalHappyController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         colorLense = new Color(darkestFloat, darkestFloat, darkestFloat);
+
+        backGroundIMG_Sad = GameObject.Find("BackgroundIMG_Sad");
 
         if (m_happyBar) {
             m_minBarPosX = m_happyBar.GetComponent<RectTransform>().anchoredPosition.x;
@@ -260,6 +265,14 @@ public class GlobalHappyController : MonoBehaviour {
             spriteRenderer.color = colorLense;
         }
     }
+    //@@
+    public void applyBackgroundColorScale()
+    {
+        Color oColor = backGroundIMG_Sad.GetComponent<SpriteRenderer>().color;
+        Color newColor = new Color(oColor.r, oColor.g, oColor.b, backgroundColorScale);
+        backGroundIMG_Sad.GetComponent<SpriteRenderer>().color = newColor;
+    }
+    //@@
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
     //@@@@@@@@@@@@@@@@@@@@@@@@
@@ -356,11 +369,14 @@ public class GlobalHappyController : MonoBehaviour {
         updateColorScale();
         //animSpeedScale
         updateanimSpeedScale();
+        //opacity scale for background color
+        updateBackgroundColorScale();
 
         //apply scales
         applyColorScaleType();
         applyAnimSpeedScale();
         applyMusicSpeedScale();
+        applyBackgroundColorScale();
     }
     void updateanimSpeedScale()
     {
@@ -385,6 +401,10 @@ public class GlobalHappyController : MonoBehaviour {
         colorLense = new Color(colorScale, colorScale, colorScale);
 
         //Debug.Log("ColorScale = " + colorScale);
+    }
+    void updateBackgroundColorScale()
+    {
+        backgroundColorScale = (1f - GlobalHappyScore);
     }
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
