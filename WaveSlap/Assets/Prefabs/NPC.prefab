@@ -388,8 +388,8 @@ MonoBehaviour:
   delayDeath: 0
   happyLevels:
   - {fileID: 22100000, guid: 226c6f239d296a64d9396fa556a69062, type: 2}
-  - {fileID: 22100000, guid: 226c6f239d296a64d9396fa556a69062, type: 2}
-  - {fileID: 22100000, guid: 226c6f239d296a64d9396fa556a69062, type: 2}
+  - {fileID: 22100000, guid: ebbe2d9ee2e8e9b44922a36a01661222, type: 2}
+  - {fileID: 22100000, guid: 683d86a6a66866f4a837be361fcedcbb, type: 2}
 --- !u!114 &114000011423882976
 MonoBehaviour:
   m_ObjectHideFlags: 1
