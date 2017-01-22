@@ -22,6 +22,7 @@ public class GlobalHappyController : MonoBehaviour {
     public float animSpeedScale = 1f;//animation speed based on GlobalHappyScore
 
     public Color colorLense = new Color(0.333f, 0.333f, 0.333f);
+    public int colorScaleFunctionType;
 
     //Event
     public EventManager em;//MUST BE SET IN INSPECTOR
@@ -42,14 +43,8 @@ public class GlobalHappyController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
-
         colorLense = new Color(0.333f, 0.333f, 0.333f);
 
-        //Initially add Waver (Player 1) to the NPC List
-
-        //findAllNPC();
-        //applyColorScale();
     }
 
     private void GHC_HappinessIncreased(object sender, NPCEventArgs e)
@@ -83,7 +78,7 @@ public class GlobalHappyController : MonoBehaviour {
 
         findAllNPC();
         calcGlobalHappyScore();
-        applyColorScale();
+        applyColorScaleType();
     }
 
     // Update is called once per frame
@@ -137,6 +132,70 @@ public class GlobalHappyController : MonoBehaviour {
         }
     }
 
+    public void applyColorScaleType()
+    {
+        switch (colorScaleFunctionType)
+        {
+            case 0:
+                //apply default colorScale
+                //gradually increases brightness
+                applyColorScale();
+                break;
+            case 1:
+                //apply a gradual darkening to a selected color
+                //based on the position of the game object in the list of game objects
+                applyColorScale_Type2();
+                break;
+            case 2:
+                //apply random color scale of one color RGB
+                //as well as an increase in darkness to that color
+                //randomly changes each sprite's color every time
+                applyRandomColorScaleRandomly();
+                break;
+        }
+    }
+    public void applyColorScale_Type2()
+    {
+        int mod3 = 0;
+        foreach (GameObject curGameObject in NPCList)
+        {
+            spriteRenderer = curGameObject.GetComponent<SpriteRenderer>();
+            mod3 = (NPCList.IndexOf(curGameObject)) % 3;
+
+            switch (mod3)
+            {
+                case 0:
+                    spriteRenderer.color = new Color(1f, (1f - colorLense.g), (1f - colorLense.b));
+                    break;
+                case 1:
+                    spriteRenderer.color = new Color((1f - colorLense.r), 1f, (1f - colorLense.b));
+                    break;
+                case 2:
+                    spriteRenderer.color = new Color((1f - colorLense.r), (1f - colorLense.g), 1f);
+                    break;
+            }
+        }
+    }
+    public void applyRandomColorScaleRandomly()
+    {
+        foreach (GameObject curGameObject in NPCList)
+        {
+            spriteRenderer = curGameObject.GetComponent<SpriteRenderer>();
+            int randSelect = Random.Range(1, 4);
+            switch (randSelect)
+            {
+                case 1:
+                        spriteRenderer.color = new Color(1f, (1f - colorLense.g),(1f - colorLense.b));
+                    break;
+                case 2:
+                        spriteRenderer.color = new Color((1f - colorLense.r), 1f, (1f - colorLense.b));
+                    break;
+                case 3:
+                        spriteRenderer.color = new Color((1f - colorLense.r), (1f - colorLense.g), 1f);
+                    break;
+            }
+        }
+    }
     public void applyColorScale()
     {
         foreach (GameObject curGameObject in NPCList)
@@ -185,7 +244,7 @@ public class GlobalHappyController : MonoBehaviour {
         updateanimSpeedScale();
 
         //apply scales
-        applyColorScale();
+        applyColorScaleType();
         applyAnimSpeedScale();
         applyMusicSpeedScale();
     }
