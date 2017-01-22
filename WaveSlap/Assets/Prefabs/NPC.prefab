@@ -114,7 +114,7 @@ GameObject:
   - 114: {fileID: 114000011309985460}
   m_Layer: 8
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -308,6 +308,7 @@ MonoBehaviour:
   minHappiness: 0
   currentHappiness: 0
   happyCounter: {fileID: 212000013510170372}
+  em: {fileID: 0}
 --- !u!114 &114000011423882976
 MonoBehaviour:
   m_ObjectHideFlags: 1
