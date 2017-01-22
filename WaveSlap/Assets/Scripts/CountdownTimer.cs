@@ -24,6 +24,8 @@ public class CountdownTimer : MonoBehaviour {
     public Image MTwo;
     public Image SOne;
     public Image STwo;
+    public Image Colon;
+    string whatever = "";
 
     private bool isPaused = false;
 	// Use this for initialization
@@ -50,13 +52,16 @@ public class CountdownTimer : MonoBehaviour {
     {
         string minutes = Mathf.Floor(MaxTime / 60).ToString("00");
         float seconds = Mathf.Floor(MaxTime % 60);
-
-        string whatever = minutes + ":" + seconds;
-
         int index = 0;
 
         if(minutes == "00" && seconds <= 30f)
         {
+            whatever = minutes + ":" + seconds;
+            MOne.enabled = true;
+            MTwo.enabled = true;
+            SOne.enabled = true;
+            STwo.enabled = true;
+            Colon.enabled = true;
             foreach (var letter in minutes)
             {
                 if (index == 2)
@@ -86,6 +91,14 @@ public class CountdownTimer : MonoBehaviour {
                 }
                 index++;
             }
+        } else
+        {
+            whatever = "";
+            MOne.enabled = false;
+            MTwo.enabled = false;
+            SOne.enabled = false;
+            STwo.enabled = false;
+            Colon.enabled = false;
         }
         
 

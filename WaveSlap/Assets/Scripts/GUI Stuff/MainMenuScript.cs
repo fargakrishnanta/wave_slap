@@ -36,7 +36,8 @@ public class MainMenuScript : MonoBehaviour {
         float m_step = 2 * Time.fixedDeltaTime;
         Slapper.transform.position = Vector2.MoveTowards(Slapper.transform.position, MiddlePoint.transform.position, m_step);
         Waver.transform.position = Vector2.MoveTowards(Waver.transform.position, MiddlePoint.transform.position, m_step);
-        if((Slapper.transform.position == MiddlePoint.transform.position) && (Waver.transform.position == MiddlePoint.transform.position))
+
+        if((Slapper.transform.position.x <= (MiddlePoint.transform.position.x + 0.7f)) && (Waver.transform.position.x >= (MiddlePoint.transform.position.x - 0.7f)))
         {
             WaSlapPanel.SetActive(false);
             return true;

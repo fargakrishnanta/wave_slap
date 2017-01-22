@@ -11,7 +11,7 @@ public class SlapMe : MonoBehaviour {
     public int MaxSlapCount;
 
     public GameObject RightSlapPanel;
-    public GameObject WrongSlapPanel;
+   
 
     public GameObject timerClass;
     public GameObject heartbutton;
@@ -53,12 +53,18 @@ public class SlapMe : MonoBehaviour {
                 return;
             }
                 
-            WrongSlapPanel.SetActive(false);
+           
             timerClass.GetComponent<CountdownTimer>().Resume();
             EnableStuff();
            
         }
-	}
+
+        if (MaxSlapCount == 0)
+        {
+            gameManager.GetComponent<GameManager>().GameOver();
+            return;
+        }
+    }
 
     /*Ray Cast dem slap mouse click*/
     void SummonDaRay()
@@ -97,7 +103,7 @@ public class SlapMe : MonoBehaviour {
     //TODO Slapping
     void SlapMePlease(bool a)
     {
-        InGame = false;
+        
         if(MaxSlapCount > 0)
         {
             MaxSlapCount--;
@@ -111,7 +117,7 @@ public class SlapMe : MonoBehaviour {
             {
                 RightSlapPanel.SetActive(true);
                 heartbutton.SetActive(true);
-                DisableStuff();
+                
 
                 if (m_successSound) {
                     audioSource.clip = m_successSound;
@@ -121,15 +127,13 @@ public class SlapMe : MonoBehaviour {
             }
             else
             {
-                WrongSlapPanel.SetActive(true);
+              
 
                 if (m_failSound) {
                     audioSource.clip = m_failSound;
                     audioSource.Play();
                 }
 
-
-                DisableStuff();
             }
         }
 

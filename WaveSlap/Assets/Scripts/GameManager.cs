@@ -22,12 +22,12 @@ public class GameManager : MonoBehaviour{
 
     public void StartWaverCutScene()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(3);
     }
 
     public void StartSlapperCutScene()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
     }
     public void InGame()
     {
