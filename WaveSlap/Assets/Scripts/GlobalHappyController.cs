@@ -17,8 +17,11 @@ public class GlobalHappyController : MonoBehaviour {
     public float GlobalHappyScore;
     public float maxHappinessPerNPC = 3f;
 
+    public GameObject backGroundIMG_Sad;
+
     public float darkestFloat;//default 0.333f
     public float colorScale;
+    public float backgroundColorScale;
     public float musicSpeedScale;//how fast the music play based on GlobalHappyScore
     public float animSpeedScale = 1f;//animation speed based on GlobalHappyScore
 
@@ -51,6 +54,8 @@ public class GlobalHappyController : MonoBehaviour {
     void Start () {
         colorLense = new Color(darkestFloat, darkestFloat, darkestFloat);
 
+        backGroundIMG_Sad = GameObject.Find("BackgroundIMG_Sad");
+
         if (m_happyBar) {
             m_minBarPosX = m_happyBar.GetComponent<RectTransform>().anchoredPosition.x;
         }
@@ -82,8 +87,8 @@ public class GlobalHappyController : MonoBehaviour {
     {
         //Debug.Log("received message from GHC_WaverSpawned");
 
-        addNPC_byTag("Player", true);
-        shuffleList();
+        addNPC_byTag("Player", true, true);
+        //shuffleList();
     }
     private void GHC_InitialHordeSpawned(object sender, NPCEventArgs e)
     {
@@ -139,6 +144,31 @@ public class GlobalHappyController : MonoBehaviour {
     {
         GameObject gameObject = GameObject.FindGameObjectWithTag(tag);
         NPCList.Add(gameObject);
+
+        if (reCalcStats)
+        {
+            calcGlobalHappyScore();
+        }
+    }
+    public void addNPC_byTag(string tag, bool reCalcStats, bool randomIndexFlag)
+    {
+        GameObject gameObject = GameObject.FindGameObjectWithTag(tag);
+
+        if (randomIndexFlag)
+        {
+            //add gameObject with specified tag
+            //to random index in the list
+
+            int randomIndex = Random.Range(0, NPCList.Count);
+            GameObject temp = NPCList[randomIndex];
+            NPCList[randomIndex] = gameObject;
+
+            NPCList.Add(temp);//add the switched NPC back into the list
+        }
+        else
+        {
+            NPCList.Add(gameObject);
+        }
 
         if (reCalcStats)
         {
@@ -260,6 +290,14 @@ public class GlobalHappyController : MonoBehaviour {
             spriteRenderer.color = colorLense;
         }
     }
+    //@@
+    public void applyBackgroundColorScale()
+    {
+        Color oColor = backGroundIMG_Sad.GetComponent<SpriteRenderer>().color;
+        Color newColor = new Color(oColor.r, oColor.g, oColor.b, backgroundColorScale);
+        backGroundIMG_Sad.GetComponent<SpriteRenderer>().color = newColor;
+    }
+    //@@
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
     //@@@@@@@@@@@@@@@@@@@@@@@@
@@ -356,11 +394,14 @@ public class GlobalHappyController : MonoBehaviour {
         updateColorScale();
         //animSpeedScale
         updateanimSpeedScale();
+        //opacity scale for background color
+        updateBackgroundColorScale();
 
         //apply scales
         applyColorScaleType();
         applyAnimSpeedScale();
         applyMusicSpeedScale();
+        applyBackgroundColorScale();
     }
     void updateanimSpeedScale()
     {
@@ -385,6 +426,10 @@ public class GlobalHappyController : MonoBehaviour {
         colorLense = new Color(colorScale, colorScale, colorScale);
 
         //Debug.Log("ColorScale = " + colorScale);
+    }
+    void updateBackgroundColorScale()
+    {
+        backgroundColorScale = (1f - GlobalHappyScore);
     }
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
