@@ -79,7 +79,8 @@ public class SlapMe : MonoBehaviour {
                 {
                
                     SlapMePlease(false);
-                    if (MaxSlapCount == 0)
+
+                    if (MaxSlapCount <= 0)
                     {
                         gameManager.GetComponent<GameManager>().GameOver();
                         return;
