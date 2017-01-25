@@ -112,6 +112,7 @@ public class SlapMe : MonoBehaviour {
             if(m_slapSound) {
                 audioSource.clip = m_slapSound;
                 audioSource.Play();
+                GetComponent<Animator>().SetTrigger("Slap");
             }
 
             if (a)
