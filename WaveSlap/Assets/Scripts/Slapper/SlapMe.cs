@@ -82,7 +82,7 @@ public class SlapMe : MonoBehaviour {
 
                     if (MaxSlapCount <= 0)
                     {
-                        gameManager.GetComponent<GameManager>().GameOver();
+                        gameManager.GetComponent<GameManager>().LoadWaveWin();
                         return;
                     }
                 }
@@ -116,9 +116,9 @@ public class SlapMe : MonoBehaviour {
 
             if (a)
             {
-                RightSlapPanel.SetActive(true);
-                heartbutton.SetActive(true);
-                
+                //RightSlapPanel.SetActive(true);
+                //heartbutton.SetActive(true);
+                gameManager.GetComponent<GameManager>().SlapperWinScene();
 
                 if (m_successSound) {
                     audioSource.clip = m_successSound;

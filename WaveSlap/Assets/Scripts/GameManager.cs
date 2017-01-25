@@ -48,6 +48,11 @@ public class GameManager : MonoBehaviour{
     {
         SceneManager.LoadScene(6);
     }
+
+    public void SlapperWinScene()
+    {
+        SceneManager.LoadScene(7);
+    }
 	// Use this for initialization
 	
 }
