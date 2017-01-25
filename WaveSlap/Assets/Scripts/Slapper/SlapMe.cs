@@ -35,6 +35,7 @@ public class SlapMe : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();
+        InGame = true;
 	}
 	
 	// Update is called once per frame
@@ -73,6 +74,7 @@ public class SlapMe : MonoBehaviour {
             {
                 if (hit.collider.gameObject.tag == "Player")
                 {
+                    InGame = false;
                     SlapMePlease(true);
                 }else
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Person"))
@@ -82,6 +84,7 @@ public class SlapMe : MonoBehaviour {
 
                     if (MaxSlapCount <= 0)
                     {
+                        InGame = false;
                         gameManager.GetComponent<GameManager>().GameOver();
                         return;
                     }
@@ -118,7 +121,7 @@ public class SlapMe : MonoBehaviour {
             if (a)
             {
                 RightSlapPanel.SetActive(true);
-                heartbutton.SetActive(true);
+                heartbutton.SetActive(true);//needs to be delayed
                 
 
                 if (m_successSound) {
